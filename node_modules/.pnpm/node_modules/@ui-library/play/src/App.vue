@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <li-button>登录</li-button>
+    <li-button>登录你好</li-button>
 </template>
 
 <style scoped>
