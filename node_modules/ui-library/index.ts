@@ -1,8 +1,12 @@
 import { makeInstaller } from "@ui-library/utils";
 import components from "./components";
 import '@ui-library/theme/index.css'
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+
+library.add(fas);  // 将图标引进来
 
 const installer = makeInstaller(components);
 
-export * from '@ui-library/components';
+export * from '../components';
 export default installer
