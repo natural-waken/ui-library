@@ -1,0 +1,79 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\86182\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add sass
+
+PATH: 
+  C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;D:\vscode.1\Microsoft VS Code\mingw32\bin;D:\vscode\Microsoft VS Code\bin;D:\vscode.1\Microsoft VS Code\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\git\Git\cmd;D:\微信开发者工具\dll;D:\微信开发者工具\微信web开发者工具\dll;D:\matlab\matlab\runtime\win64;D:\matlab\matlab\bin;D:\nvm\nvm;C:\Program Files\nodejs;C:\Users\86182\AppData\Local\pnpm;D:\python\python\Scripts\;D:\python\python\;C:\Users\86182\AppData\Local\Microsoft\WindowsApps;D:\�½��ļ���\Microsoft VS Code\bin;C:\Users\86182\AppData\Roaming\npm;D:\nvm\nvm;C:\Program Files\nodejs;D:\新建文件夹\Microsoft VS Code\bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.17.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: https://registry.npmjs.org/@ui-library%2fhooks: Not found
+      at params.callback [as _callback] (C:\Users\86182\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66145:18)
+      at self.callback (C:\Users\86182\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140890:22)
+      at Request.emit (node:events:514:28)
+      at Request.<anonymous> (C:\Users\86182\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141862:10)
+      at Request.emit (node:events:514:28)
+      at IncomingMessage.<anonymous> (C:\Users\86182\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141784:12)
+      at Object.onceWrapper (node:events:628:28)
+      at IncomingMessage.emit (node:events:526:35)
+      at endReadableNT (node:internal/streams/readable:1359:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+
+npm manifest: 
+  {
+      "name": "@ui-library/workspace",
+      "version": "1.0.0",
+      "description": "",
+      "main": "index.js",
+      "scripts": {
+          "test": "pnpm --filter @ui-library/components test",
+          "dev": "pnpm --filter @ui-library/play dev",
+          "story": "pnpm --filter @ui-library/play storybook",
+          "docs:dev": "pnpm --filter @ui-library/docs dev",
+          "docs:build": "pnpm --filter @ui-library/docs build"
+      },
+      "keywords": [],
+      "author": "",
+      "license": "ISC",
+      "dependencies": {
+          "@fortawesome/fontawesome-svg-core": "^6.5.2",
+          "@fortawesome/free-solid-svg-icons": "^6.5.2",
+          "@fortawesome/vue-fontawesome": "^3.0.6",
+          "@ui-library/hooks": "workspace:*",
+          "@ui-library/theme": "workspace:*",
+          "@ui-library/utils": "workspace:*",
+          "lodash-es": "^4.17.21",
+          "ui-library": "workspace:*",
+          "vue": "^3.4.27"
+      },
+      "devDependencies": {
+          "@types/lodash-es": "^4.17.12",
+          "@types/node": "^20.11.20",
+          "@vitejs/plugin-vue": "^5.0.4",
+          "@vitejs/plugin-vue-jsx": "^3.1.0",
+          "@vue/tsconfig": "^0.5.1",
+          "postcss-color-mix": "^1.1.0",
+          "postcss-each": "^1.1.0",
+          "postcss-each-variables": "^0.3.0",
+          "postcss-for": "^2.1.1",
+          "postcss-nested": "^6.0.1",
+          "sass": "^1.77.2",
+          "typescript": "^5.2.2",
+          "vite": "^5.1.4",
+          "vitest": "^1.4.0",
+          "vue-tsc": "^1.8.27"
+      }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

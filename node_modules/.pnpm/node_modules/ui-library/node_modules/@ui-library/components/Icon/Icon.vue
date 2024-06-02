@@ -27,21 +27,6 @@ const customStyles = computed(() => ({ color: props.color ?? void 0 })); // ца╣ц
     </i>
 </template>
 
-<style lang="scss" scoped>
-.li-icon {
-    --li-icon-color: inherit;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    fill: currentColor;
-    color: var(--li-icon-color);
-    font-size: inherit;
-}
-
-@each $val in primary, info, success, warning, danger {
-    .li-icon--#{$val} {
-        --li-icon-color: var(--li-color-#{$val});
-    }
-}
+<style scoped>
+@import './style.css';
 </style>
