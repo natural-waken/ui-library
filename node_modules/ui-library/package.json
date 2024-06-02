@@ -1,5 +1,5 @@
 {
-    "name": "ui-library",
+    "name": "li-ui-library",
     "version": "1.0.0",
     "description": "Components library by Vue3 + TS",
     "type": "module",
