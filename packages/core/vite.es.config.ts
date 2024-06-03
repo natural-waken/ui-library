@@ -70,7 +70,7 @@ export default defineConfig({
     build: {
         outDir: "dist/es",
         // minify: false,
-        cssCodeSplit: true,
+        // cssCodeSplit: true,
         lib: {
             entry: resolve(__dirname, "./index.ts"),
             name: "UiLibrary",
