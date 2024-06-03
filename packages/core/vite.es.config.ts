@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import { resolve } from "path";
 import vue from "@vitejs/plugin-vue";
 import dts from 'vite-plugin-dts'
-import { readdirSync } from "fs";
+import { readdir, readdirSync } from "fs";
 import { defer, delay, filter, map } from "lodash-es";
 import shell from "shelljs";
 import hooks from "./hooksPlugin";
@@ -46,14 +46,22 @@ function getDirectoriesSync(basePath: string) {  // 参数是要获取子目录�
 // 尝试移动样式文件（.css 文件）到指定目录中
 // 如果文件移动失败，会延迟一段时间后再次尝试移动
 const TRY_MOVE_STYLES_DELAY = 800 as const;
+// function moveStyles() {
+//     try {
+//         readdirSync("./dist/es/theme")
+//         shell.mv("./dist/es/theme", "./dist");
+//     } catch (_) {
+//         delay(moveStyles, TRY_MOVE_STYLES_DELAY);
+//     }
+// }
+
 function moveStyles() {
-    try {
-        readdirSync("./dist/es/theme")
-        shell.cp("./dist/es/theme", "./dist");
-    } catch (_) {
-        delay(moveStyles, TRY_MOVE_STYLES_DELAY);
-    }
+    readdir("./dist/es/theme", (err) => {
+        if (err) return delay(moveStyles, TRY_MOVE_STYLES_DELAY);
+        defer(() => shell.mv("./dist/es/theme", "./dist"));
+    });
 }
+
 
 export default defineConfig({
     plugins: [
@@ -69,8 +77,8 @@ export default defineConfig({
     ],
     build: {
         outDir: "dist/es",
-        // minify: false,
-        // cssCodeSplit: true,
+        minify: false,
+        cssCodeSplit: true,
         lib: {
             entry: resolve(__dirname, "./index.ts"),
             name: "UiLibrary",

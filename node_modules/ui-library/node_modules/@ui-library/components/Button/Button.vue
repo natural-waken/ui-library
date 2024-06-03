@@ -2,7 +2,7 @@
 import { ref, computed, inject } from 'vue';
 import type { ButtonProps, ButtonEmits, ButtonInstance } from './types.ts';
 import { throttle } from 'lodash-es'; // 引入节流代码
-import { LiIcon } from 'ui-library';
+import LiIcon from '../Icon/Icon.vue'; // 这里要这么写才行
 import { BUTTON_GROUP_CTX_KEY } from './constants';
 
 // 设置组件的选项

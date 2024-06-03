@@ -20,15 +20,18 @@
         "strict": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "noFallthroughCasesInSwitch": true
+        "noFallthroughCasesInSwitch": true,
+        "types": ["node"],
+        "baseUrl": "./",
+        "paths": {
+            "@ui-library/components": ["./packages/components"]
+        }
     },
     "include": [
         "packages/core/index.ts",
         "packages/hooks/**/*.ts",
         "packages/utils/**/*.ts",
-        "packages/components/index.ts",
-        "packages/components/**/*.ts",
-        "packages/components/**/*.vue"
+        "packages/components/**/*.ts"
     ],
     "exclude": ["packages/components/vitest.config.es"]
 }

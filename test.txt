@@ -1,0 +1,6 @@
+dist/es/index.js               0.64 kB │ gzip: 0.30 kB
+dist/es/utils-1tpzXBTe.js      1.00 kB │ gzip: 0.58 kB
+dist/es/Icon-Cnwu7ohr.js       1.88 kB │ gzip: 0.91 kB
+dist/es/Button-PpNqIWvm.js     4.64 kB │ gzip: 1.58 kB
+dist/es/Collapse-B4KrPtcV.js   5.49 kB │ gzip: 1.68 kB
+dist/es/vendor-kyZYTp08.js    42.55 kB │ gzip: 9.89 kB
