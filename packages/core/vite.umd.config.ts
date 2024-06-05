@@ -1,13 +1,18 @@
 import { defineConfig } from "vite";
 import { resolve } from "path";
 import { readFile, readFileSync, readdirSync } from "fs";
-
-import vue from "@vitejs/plugin-vue";
 import { compression } from "vite-plugin-compression2";
 import { defer, delay } from "lodash-es";
-import shell from "shelljs";
-import hooks from "./hooksPlugin";
 
+import shell from "shelljs";
+import vue from "@vitejs/plugin-vue";
+import hooks from "./hooksPlugin";
+import terser from '@rollup/plugin-terser'
+
+
+const isProd = process.env.NODE_ENV === "production";
+const isDev = process.env.NODE_ENV === "development";
+const isTest = process.env.NODE_ENV === "test";
 
 
 const TRY_MOVE_STYLES_DELAY = 800 as const;
@@ -40,6 +45,18 @@ export default defineConfig({
         hooks({
             rmFiles: ["./dist/umd", "./dist/index.css"],
             afterBuild: moveStyles,
+        }),
+        terser({
+            compress: {
+                drop_console: ["log"],
+                drop_debugger: true,
+                passes: 3,
+                global_defs: {
+                    "@DEV": JSON.stringify(isDev),
+                    "@PROD": JSON.stringify(isProd),
+                    "@TEST": JSON.stringify(isTest),
+                },
+            },
         }),
     ],
     build: {

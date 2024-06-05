@@ -3,6 +3,10 @@ import components from "./components";
 import '@ui-library/theme/index.css'
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
+import printLogo from "./printLogo";
+
+// 引入我们的 logo
+printLogo();
 
 library.add(fas);  // 将图标引进来
 

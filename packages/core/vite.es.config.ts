@@ -6,7 +6,13 @@ import { readdir, readdirSync } from "fs";
 import { defer, delay, filter, map } from "lodash-es";
 import shell from "shelljs";
 import hooks from "./hooksPlugin";
+import terser from '@rollup/plugin-terser'
 
+
+
+const isProd = process.env.NODE_ENV === "production";
+const isDev = process.env.NODE_ENV === "development";
+const isTest = process.env.NODE_ENV === "test";
 
 
 // 我们将所有组件定义成个数组
@@ -54,7 +60,6 @@ const TRY_MOVE_STYLES_DELAY = 800 as const;
 //         delay(moveStyles, TRY_MOVE_STYLES_DELAY);
 //     }
 // }
-
 function moveStyles() {
     readdir("./dist/es/theme", (err) => {
         if (err) return delay(moveStyles, TRY_MOVE_STYLES_DELAY);
@@ -74,10 +79,39 @@ export default defineConfig({
             rmFiles: ["./dist/es", "./dist/theme", "./dist/types"],
             afterBuild: moveStyles,
         }),
+        // 在这里写插件的代码混淆
+        terser({
+            compress: {
+                // 正式环境下删除 console.log
+                sequences: isProd,
+                arguments: isProd,
+                drop_console: isProd && ["log"],
+                drop_debugger: isProd,
+                passes: isProd ? 4 : 1,
+                global_defs: {
+                    "@DEV": JSON.stringify(isDev),
+                    "@PROD": JSON.stringify(isProd),
+                    "@TEST": JSON.stringify(isTest),
+                },
+            },
+            format: {
+                semicolons: false,
+                shorthand: isProd,
+                braces: !isProd,
+                beautify: !isProd,
+                comments: !isProd,
+            },
+            mangle: {
+                toplevel: isProd,
+                eval: isProd,
+                keep_classnames: isDev,
+                keep_fnames: isDev,
+            },
+        }),
     ],
     build: {
         outDir: "dist/es",
-        minify: false,
+        minify: false,  // 关掉默认混淆
         cssCodeSplit: true,
         lib: {
             entry: resolve(__dirname, "./index.ts"),

@@ -28,6 +28,13 @@ const slots = defineSlots();
 
 // 引用按钮的 DOM 元素
 const _ref = ref<HTMLButtonElement>();
+
+// group
+// 当 LiButton 组件作为 LiButtonGroup 的子组件时，它会使用 LiButtonGroup 提供的属性，否则会使用自身的属性
+const ctx = inject(BUTTON_GROUP_CTX_KEY, void 0); // 右边默认值 0
+const size = computed(() => ctx?.size ?? props?.size ?? '');
+const type = computed(() => ctx?.type ?? props?.type ?? '');
+const disabled = computed(() => ctx?.disabled || props?.disabled || false);
 const iconStyle = computed(() => ({
     marginRight: slots.default ? '6px' : '0px',
 })); // 服务于单个图标的圆形组件
@@ -43,14 +50,10 @@ const handleBtnClickThrottle = throttle(
 // 将 ButtonInstance 接口暴露给外部组件
 defineExpose<ButtonInstance>({
     ref: _ref,
+    disabled,
+    size,
+    type,
 });
-
-// group
-// 当 LiButton 组件作为 LiButtonGroup 的子组件时，它会使用 LiButtonGroup 提供的属性，否则会使用自身的属性
-const ctx = inject(BUTTON_GROUP_CTX_KEY, void 0); // 右边默认值 0
-const size = computed(() => ctx?.size ?? props?.size ?? '');
-const type = computed(() => ctx?.type ?? props?.type ?? '');
-const disabled = computed(() => ctx?.disabled || props?.disabled || false);
 </script>
 
 <template>

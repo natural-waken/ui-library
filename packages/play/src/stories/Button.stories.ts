@@ -1,8 +1,9 @@
 import type { Meta, StoryObj, ArgTypes } from '@storybook/vue3';  // 用于定义 Storybook 的元数据和故事对象
 import { fn, within, userEvent, expect, clearAllMocks } from '@storybook/test';  // 函数方法  用于编写交互测试
-import { LiButton, LiButtonGroup } from 'ui-library';
 import { set } from 'lodash-es';
 
+import { LiButton, LiButtonGroup } from 'ui-library';
+import 'ui-library/dist/theme/Button.css';
 
 // 定义类型别名  可能包含 argTypes 属性
 type Story = StoryObj<typeof LiButton> & { argTypes?: ArgTypes };

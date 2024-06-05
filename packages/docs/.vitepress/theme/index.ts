@@ -1,10 +1,10 @@
 import DefaultTheme from "vitepress/theme";
 import { type App } from "vue";
 import UiLibrary from "ui-library";
-import 'ui-library/dist/index.css'
-import { ElementPlusContainer } from "@vitepress-demo-preview/component";
+import { ElementPlusContainer } from "@vitepress-preview/component";
 
-import "@vitepress-demo-preview/component/dist/style.css";
+import "@vitepress-preview/component/style.css";
+import 'ui-library/dist/index.css'
 
 export default {
     ...DefaultTheme,

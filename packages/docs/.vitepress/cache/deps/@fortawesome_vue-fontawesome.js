@@ -3,7 +3,7 @@ import {
   defineComponent,
   h,
   watch
-} from "./chunk-LRI6K42L.js";
+} from "./chunk-JWA4H7QR.js";
 import {
   config$1,
   icon,
