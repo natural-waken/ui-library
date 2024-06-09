@@ -3,6 +3,8 @@ import type { AlertType } from "./types";
 import { mount } from "@vue/test-utils";
 import Alert from "./Alert.vue";
 import Icon from "../Icon/Icon.vue";
+import { LiAlert } from "./index";
+import { withInstall } from "@ui-library/utils";
 
 describe("Alert.vue", () => {
     // 定义两个常量 title 和 desc，它们将在多个测试中使用
@@ -129,5 +131,27 @@ describe("Alert.vue", () => {
         expect(wrapper.find(".li-alert").attributes().style).toBe("display: none;");
         await wrapper.vm.open();
         expect(wrapper.find(".li-alert").attributes().style).toBe("");
+    });
+});
+
+describe('Alert/index', () => {
+    it('should be exported with withInstall()', () => {
+        expect(LiAlert.install).toBeDefined();
+    });
+
+    it('component should be exported', () => {
+        expect(LiAlert).toBe(Alert);
+    });
+
+    // 可选的测试用例，需要提供具体的上下文和实现
+    it('should enhance Alert component', () => {
+        const enhancedAlert = withInstall(Alert);
+        expect(enhancedAlert).toBe(LiAlert);
+    });
+
+    // 另一个可选的测试用例，同样需要具体上下文
+    it('should apply specific enhance', () => {
+        const enhancedAlert = withInstall(Alert);
+        expect(enhancedAlert).toHaveProperty('install');
     });
 });

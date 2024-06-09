@@ -24,3 +24,5 @@ export const withInstall = <T>(component: T) => {
     }
     return component as SFCWithInstall<T>;
 };
+
+// 这个就是两种引入方式  一个是全部引入  一个是按需引入

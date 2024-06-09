@@ -10,9 +10,14 @@ class LiUIError extends Error {
 }
 // 这个就相当于组件库 ui 上面的报错
 
+
+function createLiUIError(scope: string, msg: string) {
+    return new LiUIError(`[${scope}]:${msg}`)
+}
+
 // 抛出一个 LiUIError 类型的错误     scope 表示错误的作用域或范围，msg 表示错误消息  
 export function throwError(scope: string, msg: string) {
-    throw new LiUIError(`[${scope}] ${msg}`);  // 创建一个 LiUIError 类型的错误并抛出
+    throw createLiUIError(scope, msg);  // 创建一个 LiUIError 类型的错误并抛出
 }
 
 export function debugWarn(error: Error): void;
@@ -21,7 +26,7 @@ export function debugWarn(scope: string | Error, msg?: string) {
     // 非生产环境下输出警告信息
     if (process.env.NODE_ENV !== "production") {
         // 如果 scope 是字符串，则创建一个 LiUIError 类型的错误对象
-        const err = isString(scope) ? new LiUIError(`[${scope}] ${msg}`) : scope;
+        const err = isString(scope) ? createLiUIError(scope, msg!) : scope;
         console.warn(err);
     }
 }

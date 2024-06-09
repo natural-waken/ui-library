@@ -9,6 +9,8 @@ import { mount } from "@vue/test-utils";
 import Button from "./Button.vue";
 import Icon from "../Icon/Icon.vue";
 import ButtonGroup from "./ButtonGroup.vue";
+import { LiButton } from "./index";
+import { withInstall } from "@ui-library/utils";
 
 
 describe("Button.vue", () => {
@@ -263,5 +265,28 @@ describe("ButtonGroup.vue", () => {
 
         const buttonWrapper = wrapper.findComponent(Button);
         expect(buttonWrapper.classes()).toContain(`is-disabled`);
+    });
+});
+
+
+describe('Button/index', () => {
+    it('should be exported with withInstall()', () => {
+        expect(LiButton.install).toBeDefined();
+    });
+
+    it('component should be exported', () => {
+        expect(LiButton).toBe(Button);
+    });
+
+    // 可选的测试用例，需要提供具体的上下文和实现
+    it('should enhance Alert component', () => {
+        const enhancedAlert = withInstall(Button);
+        expect(enhancedAlert).toBe(LiButton);
+    });
+
+    // 另一个可选的测试用例，同样需要具体上下文
+    it('should apply specific enhance', () => {
+        const enhancedAlert = withInstall(Button);
+        expect(enhancedAlert).toHaveProperty('install');
     });
 });

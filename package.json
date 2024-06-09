@@ -8,7 +8,9 @@
         "story": "pnpm --filter @ui-library/play storybook",
         "docs:dev": "pnpm --filter @ui-library/docs dev",
         "docs:build": "pnpm --filter @ui-library/docs build",
-        "test": "cross-env NODE_ENV=test pnpm --filter @ui-library/components test",
+        "test": "run-p test-utils test-comp",
+        "test-comp": "cross-env NODE_ENV=test pnpm --filter @ui-library/components test",
+        "test-utils": "cross-env NODE_ENV=test pnpm --filter @ui-library/utils test",
         "build": "cross-env NODE_ENV=production pnpm --filter ui-library build",
         "build:dev": "cross-env NODE_ENV=development pnpm --filter ui-library build:watch"
     },
