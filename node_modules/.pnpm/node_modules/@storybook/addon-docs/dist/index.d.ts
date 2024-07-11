@@ -1,5 +1,5 @@
 export * from '@storybook/blocks';
-import { Renderer, DocsRenderFunction } from '@storybook/types';
+import { Renderer, DocsRenderFunction } from 'storybook/internal/types';
 
 declare class DocsRenderer<TRenderer extends Renderer> {
     render: DocsRenderFunction<TRenderer>;

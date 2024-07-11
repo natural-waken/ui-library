@@ -38,8 +38,9 @@
     "devDependencies": {
         "@rollup/plugin-terser": "^0.4.4",
         "rollup-plugin-visualizer": "^5.12.0",
+        "@ui-library/components": "workspace:*",
         "terser": "^5.31.0",
-        "vite-plugin-compression": "^0.5.1"
+        "vite-plugin-compression2": "^1.1.2"
     },
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^6.5.1",

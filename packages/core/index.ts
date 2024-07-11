@@ -12,6 +12,6 @@ library.add(fas);  // 将图标引进来
 
 const installer = makeInstaller(components);
 
-// export * from '../components';  // 这个肯定要这样写  不然在线上无法看见
-export * from '@ui-library/components';  // 新方法
+export * from '../components';  // 这个肯定要这样写  不然在线上无法看见
+// export * from '@ui-library/components';  // 新方法/
 export default installer

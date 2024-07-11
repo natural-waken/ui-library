@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
-import { resolve } from "path";
+import path, { resolve } from "path";
 import { readFile, readFileSync, readdirSync } from "fs";
 import { compression } from "vite-plugin-compression2";
 import { defer, delay } from "lodash-es";
@@ -8,7 +8,7 @@ import shell from "shelljs";
 import vue from "@vitejs/plugin-vue";
 import { hooksPlugin as hooks } from "@ui-library/vite-plugins";
 import terser from '@rollup/plugin-terser'
-import visualizer from "rollup-plugin-visualizer";
+import { visualizer } from "rollup-plugin-visualizer";
 
 
 const isProd = process.env.NODE_ENV === "production";
