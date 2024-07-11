@@ -3,6 +3,7 @@ import type { CollapseProps, CollapseEmits, CollapseItemName } from './types';
 import { ref, provide, watch, watchEffect } from 'vue';
 import { debugWarn } from '@ui-library/utils';
 import { COLLAPSE_CTX_KEY } from './constants';
+import { each } from 'lodash-es';
 
 const COMP_NAME = 'LiCollapse' as const;
 
@@ -46,10 +47,16 @@ function handleItemClick(item: CollapseItemName) {
     updateActiveNames(_activeNames); // 更新 activeNames 的值，并触发相应的事件
 }
 
-function updateActiveNames(newNames: CollapseItemName[]) {
-    activeNames.value = newNames;
-    emits('update:modelValue', newNames);
-    emits('change', newNames);
+// function updateActiveNames(newNames: CollapseItemName[]) {
+//     activeNames.value = newNames;
+//     emits('update:modelValue', newNames);
+//     emits('change', newNames);
+// }
+function updateActiveNames(val: CollapseItemName[]) {
+  activeNames.value = val;
+  each(["update:modelValue", "change"], (e) =>
+    emits(e as "update:modelValue" & "change", val)
+  );
 }
 
 watchEffect(() => {

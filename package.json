@@ -11,8 +11,12 @@
         "test": "run-p test-utils test-comp",
         "test-comp": "cross-env NODE_ENV=test pnpm --filter @ui-library/components test",
         "test-utils": "cross-env NODE_ENV=test pnpm --filter @ui-library/utils test",
-        "build": "cross-env NODE_ENV=production pnpm --filter ui-library build",
-        "build:dev": "cross-env NODE_ENV=development pnpm --filter ui-library build:watch"
+        "test-hooks": "cross-env NODE_ENV=test pnpm --filter @ui-library/hooks test",
+        "build": "run-s build-hooks build-comp",
+        "build-comp": "cross-env NODE_ENV=production pnpm --filter ui-library build",
+        "build-hooks": "cross-env NODE_ENV=production pnpm --filter @ui-library/hooks build",
+        "build:dev": "cross-env NODE_ENV=development pnpm --filter ui-library build:watch",
+        "release": "pnpm --filter ui-library release"
     },
     "keywords": [],
     "author": "",
@@ -25,10 +29,14 @@
         "@ui-library/hooks": "workspace:*",
         "@ui-library/theme": "workspace:*",
         "@ui-library/utils": "workspace:*",
+        "@ui-library/vite-plugins": "workspace:*",
         "@vitepress-demo-preview/component": "^2.3.2",
+        "add": "^2.0.6",
         "async-validator": "^4.2.5",
         "lodash-es": "^4.17.21",
+        "rollup-plugin-visualizer": "^5.12.0",
         "ui-library": "workspace:*",
+        "vite-plugin-dts": "^3.9.1",
         "vue": "^3.4.27"
     },
     "devDependencies": {
@@ -37,6 +45,7 @@
         "@types/shelljs": "^0.8.15",
         "@vitejs/plugin-vue": "^5.0.4",
         "@vitejs/plugin-vue-jsx": "^3.1.0",
+        "@vue/test-utils": "^2.4.6",
         "@vue/tsconfig": "^0.5.1",
         "cross-env": "^7.0.3",
         "http-server": "^14.1.1",

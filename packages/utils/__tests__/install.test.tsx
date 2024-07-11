@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 import { mount } from '@vue/test-utils'
 import { defineComponent, createApp } from "vue";
 import { withInstall, makeInstaller } from "../install";
@@ -17,7 +17,7 @@ const compA = withInstall(defineComponent({
 }));
 
 const compB = withInstall(defineComponent({
-    name: 'compB',
+    name: 'CompB',
     setup() {
         return () => <div>CompB</div>;
     }
@@ -33,8 +33,8 @@ describe('install', () => {
 
         expect(compA.install).toBeDefined();
         expect(compB.install).toBeDefined();
-        expect(wrapper.findComponent(compA)).toBeTruthy();
-        expect(wrapper.findComponent(compB)).toBeTruthy();
+        expect(app._context.components['CompA']).toBeTruthy();
+        expect(app._context.components['CompB']).toBeTruthy();
     });
 
     it('makeInstaller should be worked', () => {
@@ -48,7 +48,7 @@ describe('install', () => {
         // 以下期望可能需要根据实际实现进行调整
         expect(installer).toBeDefined();
         // 如果 makeInstaller 正确注册了组件，以下断言也应该为真
-        expect(wrapper.findComponent(compA)).toBeTruthy();
-        expect(wrapper.findComponent(compB)).toBeTruthy();
+        expect(app._context.components['CompA']).toBeTruthy();
+        expect(app._context.components['CompB']).toBeTruthy();
     });
 });

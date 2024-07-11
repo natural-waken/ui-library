@@ -2,7 +2,7 @@ Arguments:
   C:\Program Files\nodejs\node.exe C:\Users\86182\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add vite-plugin-dts --dev
 
 PATH: 
-  C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;D:\vscode.1\Microsoft VS Code\mingw32\bin;D:\vscode\Microsoft VS Code\bin;D:\vscode.1\Microsoft VS Code\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\git\Git\cmd;D:\微信开发者工具\dll;D:\微信开发者工具\微信web开发者工具\dll;D:\matlab\matlab\runtime\win64;D:\matlab\matlab\bin;D:\nvm\nvm;C:\Program Files\nodejs;C:\Users\86182\AppData\Local\pnpm;D:\python\python\Scripts\;D:\python\python\;C:\Users\86182\AppData\Local\Microsoft\WindowsApps;D:\�½��ļ���\Microsoft VS Code\bin;C:\Users\86182\AppData\Roaming\npm;D:\nvm\nvm;C:\Program Files\nodejs;D:\新建文件夹\Microsoft VS Code\bin
+  C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;D:\vscode.1\Microsoft VS Code\mingw32\bin;D:\vscode\Microsoft VS Code\bin;D:\vscode.1\Microsoft VS Code\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\git\Git\cmd;D:\微信开发者工具\dll;D:\微信开发者工具\微信web开发者工具\dll;D:\nvm\nvm;C:\Program Files\nodejs;C:\Users\86182\AppData\Local\pnpm;D:\python\python\Scripts\;D:\python\python\;C:\Users\86182\AppData\Local\Microsoft\WindowsApps;D:\�½��ļ���\Microsoft VS Code\bin;C:\Users\86182\AppData\Roaming\npm;D:\nvm\nvm;C:\Program Files\nodejs;D:\新建文件夹\Microsoft VS Code\bin
 
 Yarn version: 
   1.22.19
@@ -37,9 +37,13 @@ npm manifest:
           "story": "pnpm --filter @ui-library/play storybook",
           "docs:dev": "pnpm --filter @ui-library/docs dev",
           "docs:build": "pnpm --filter @ui-library/docs build",
-          "test": "cross-env NODE_ENV=test pnpm --filter @ui-library/components test",
+          "test": "run-p test-utils test-comp",
+          "test-comp": "cross-env NODE_ENV=test pnpm --filter @ui-library/components test",
+          "test-utils": "cross-env NODE_ENV=test pnpm --filter @ui-library/utils test",
+          "test-hooks": "cross-env NODE_ENV=test pnpm --filter @ui-library/hooks test",
           "build": "cross-env NODE_ENV=production pnpm --filter ui-library build",
-          "build:dev": "cross-env NODE_ENV=development pnpm --filter ui-library build:watch"
+          "build:dev": "cross-env NODE_ENV=development pnpm --filter ui-library build:watch",
+          "release": "pnpm --filter ui-library release"
       },
       "keywords": [],
       "author": "",
@@ -64,6 +68,7 @@ npm manifest:
           "@types/shelljs": "^0.8.15",
           "@vitejs/plugin-vue": "^5.0.4",
           "@vitejs/plugin-vue-jsx": "^3.1.0",
+          "@vue/test-utils": "^2.4.6",
           "@vue/tsconfig": "^0.5.1",
           "cross-env": "^7.0.3",
           "http-server": "^14.1.1",

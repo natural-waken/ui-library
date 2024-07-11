@@ -6,7 +6,8 @@ import {
     LiButtonGroup,
     LiCollapse,
     LiCollapseItem,
-    LiIcon
+    LiIcon,
+    LiTooltip
 } from '..'
 import { get, map } from "lodash-es";
 
@@ -16,7 +17,8 @@ const comps = [
     LiButtonGroup,
     LiCollapse,
     LiCollapseItem,
-    LiIcon
+    LiIcon,
+    LiTooltip,
 ] as Plugin[];
 
 describe('components/index', () => {

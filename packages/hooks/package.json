@@ -1,12 +1,29 @@
 {
-  "name": "@ui-library/hooks",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo 'todo'"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+    "name": "@ui-library/hooks",
+    "version": "1.0.0",
+    "type": "module",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "exports": {
+        ".": {
+            "import": "./dist/index.js",
+            "types": "./dist/index.d.ts"
+        }
+    },
+    "scripts": {
+        "test": "vitest --run --coverage",
+        "build": "vite build"
+    },
+    "peerDependencies": {
+        "vue": "^3.4.27",
+        "lodash-es": "^4.17.21"
+    },
+    "license": "ISC",
+    "devDependencies": {
+        "@vitest/coverage-v8": "^1.4.0",
+        "vitest": "^1.6.0"
+    }
 }

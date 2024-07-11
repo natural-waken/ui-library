@@ -169,7 +169,7 @@ describe("Collapse.vue", () => {
     expect(() => wrapper.vm.$nextTick()).toThrow();
 });
 
-describe("Collapse/transitionEvents.ts", () => {
+describe("Collapse/transitionEvent.ts", () => {
     const wrapper = mount(() => <div></div>);
 
     test("beforeEnter", () => {
@@ -229,3 +229,6 @@ describe('Collapse/index', () => {
         expect(enhancedAlert).toHaveProperty('install');
     });
 });
+
+
+
