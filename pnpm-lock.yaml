@@ -49,7 +49,7 @@ importers:
         version: 5.12.0(rollup@4.18.0)
       ui-library:
         specifier: workspace:*
-        version: 'link:'
+        version: link:packages/core
       vite-plugin-dts:
         specifier: ^3.9.1
         version: 3.9.1(@types/node@20.14.2)(rollup@4.18.0)(typescript@5.4.5)(vite@5.2.13(@types/node@20.14.2)(sass@1.77.5)(terser@5.31.1))

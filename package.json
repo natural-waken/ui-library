@@ -2,7 +2,7 @@
     "name": "@ui-library/workspace",
     "version": "1.0.0",
     "description": "",
-    "main": "dist/index.js",
+    "main": "index.js",
     "scripts": {
         "dev": "pnpm --filter @ui-library/play dev",
         "story": "pnpm --filter @ui-library/play storybook",
