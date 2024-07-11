@@ -178,6 +178,9 @@ importers:
       '@rollup/plugin-terser':
         specifier: ^0.4.4
         version: 0.4.4(rollup@4.18.1)
+      '@ui-library/components':
+        specifier: workspace:*
+        version: link:../components
       rollup-plugin-visualizer:
         specifier: ^5.12.0
         version: 5.12.0(rollup@4.18.1)
