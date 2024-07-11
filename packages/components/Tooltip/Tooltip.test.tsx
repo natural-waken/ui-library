@@ -126,7 +126,7 @@ describe("Tooltip.vue", () => {
     // 手动模式的测试
     test("tooltip with manual trigger", async () => {
         // ... 省略其他设置
-        const wrapper = mount(Tooltip, {
+        let wrapper = mount(Tooltip, {
             props: { manual: true, content: "test" },
         });
         // 测试手动触发显示和隐藏
@@ -134,6 +134,12 @@ describe("Tooltip.vue", () => {
         await vi.runAllTimers();
         expect(wrapper.find(".li-tooltip__popper").exists()).toBeTruthy();
         wrapper.vm.hide();
+        await vi.runAllTimers();
+        expect(wrapper.find(".li-tooltip__popper").exists()).toBeFalsy();
+
+        wrapper.setProps({ disabled: true });
+        await vi.runAllTimers();
+        wrapper.vm.show();
         await vi.runAllTimers();
         expect(wrapper.find(".li-tooltip__popper").exists()).toBeFalsy();
     });
@@ -154,12 +160,96 @@ describe("Tooltip.vue", () => {
     test("tooltip with virtual trigger node", async () => {
         // ... 省略其他设置
         const virtualRef = document.createElement("div");
-        const wrapper = mount(Tooltip, {
+        let wrapper = mount(Tooltip, {
             props: { virtualRef, virtualTriggering: true },
         });
         // 测试虚拟节点的事件触发
         virtualRef.dispatchEvent(new Event("mouseenter"));  // 相当于是触发了  hover    
         await vi.runAllTimers();
         expect(wrapper.find(".li-tooltip__popper").exists()).toBeTruthy();
+
+        wrapper.setProps({ trigger: "click" });
+        await vi.runAllTimers();
+        virtualRef.dispatchEvent(new Event("click"));
+        await vi.runAllTimers();
+        expect(wrapper.find(".li-tooltip__popper").exists()).toBeTruthy();
+
+        wrapper.unmount();
     });
+
+    test("change trigger prop", async () => {
+        const wrapper = mount(Tooltip, {
+            props: { trigger: "hover", content: "test" }
+        });
+        wrapper.setProps({ trigger: "click" });
+        await vi.runAllTimers();
+        wrapper.find(".li-tooltip__trigger").trigger("click");
+
+        await vi.runAllTimers();
+        expect(wrapper.find(".li-tooltip__popper").exists()).toBeTruthy();
+        wrapper.find(".li-tooltip__trigger").trigger("click");
+
+        await vi.runAllTimers();
+        wrapper.find(".li-tooltip__trigger").trigger("hover");
+        await vi.runAllTimers();
+        expect(wrapper.find(".li-tooltip__popper").exists()).toBeFalsy();
+    });
+
+    test("change manual prop", async () => {
+        const wrapper = mount(Tooltip, {
+            props: { trigger: "hover", content: "test" }
+        });
+
+        wrapper.setProps({ manual: true });
+        await vi.runAllTimers();
+
+        wrapper.find(".li-tooltip__trigger").trigger("hover");
+        await vi.runAllTimers();
+
+        expect(wrapper.find(".li-tooltip__popper").exists()).toBeFalsy();
+
+        wrapper.setProps({ manual: false, trigger: "contextmenu" });
+        await vi.runAllTimers();
+
+        wrapper.find(".li-tooltip__trigger").trigger("contextmenu");
+        await vi.runAllTimers();
+
+        expect(wrapper.find(".li-tooltip__popper").exists()).toBeTruthy();
+    });
+
+    test("click-outside disabled when trigger prop is hover or manual mode", async () => {
+        const wrapper = mount(
+            () => (
+                <div>
+                    <div id="outside"></div>
+                    <Tooltip
+                        content="hello tooltip"
+                        trigger="hover"
+                        {...{ onVisibleChange }}
+                    >
+                        <button id="trigger">trigger</button>
+                    </Tooltip>
+                </div>
+            ),
+            {
+                attachTo: document.body,
+            }
+        );
+
+        const triggerArea = wrapper.find("#trigger");
+        expect(triggerArea.exists()).toBeTruthy();
+        expect(wrapper.find(".li-tooltip__popper").exists()).toBeFalsy();
+
+        // 弹出层是否出现
+        wrapper.find(".li-tooltip__trigger").trigger("mouseenter");
+        await vi.runAllTimers();
+        expect(wrapper.find(".li-tooltip__popper").exists()).toBeTruthy();
+
+        // trigger:hover外层点击不触发
+        wrapper.get("#outside").trigger("click");
+        await vi.runAllTimers();
+        expect(wrapper.find(".li-tooltip__popper").exists()).toBeTruthy();
+        // 注销流程
+        wrapper.unmount();
+    })
 });

@@ -1,79 +1,52 @@
 {
-  "hash": "3c0c0655",
-  "configHash": "ff690326",
+  "hash": "8a769444",
+  "configHash": "328992d4",
   "lockfileHash": "544750a4",
-  "browserHash": "00710879",
+  "browserHash": "b24f3645",
   "optimized": {
     "vue": {
       "src": "../../../node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "d5efce66",
+      "fileHash": "7c15b912",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
-      "src": "../../../../../node_modules/.pnpm/@vue+devtools-api@7.1.3_vue@3.4.27_typescript@5.4.5_/node_modules/@vue/devtools-api/dist/index.js",
+      "src": "../../../../../node_modules/.pnpm/@vue+devtools-api@7.2.1_vue@3.4.27_typescript@5.4.5_/node_modules/@vue/devtools-api/dist/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "2285b827",
+      "fileHash": "2f968f27",
       "needsInterop": false
     },
     "vitepress > @vueuse/core": {
-      "src": "../../../../../node_modules/.pnpm/@vueuse+core@10.9.0_vue@3.4.27_typescript@5.4.5_/node_modules/@vueuse/core/index.mjs",
+      "src": "../../../../../node_modules/.pnpm/@vueuse+core@10.11.0_vue@3.4.27_typescript@5.4.5_/node_modules/@vueuse/core/index.mjs",
       "file": "vitepress___@vueuse_core.js",
-      "fileHash": "f8d78b3d",
+      "fileHash": "12a1a1cb",
       "needsInterop": false
     },
     "vitepress > @vueuse/integrations/useFocusTrap": {
-      "src": "../../../../../node_modules/.pnpm/@vueuse+integrations@10.9.0_async-validator@4.2.5_focus-trap@7.5.4_vue@3.4.27_typescript@5.4.5_/node_modules/@vueuse/integrations/useFocusTrap.mjs",
+      "src": "../../../../../node_modules/.pnpm/@vueuse+integrations@10.11.0_async-validator@4.2.5_focus-trap@7.5.4_vue@3.4.27_typescript@5.4.5_/node_modules/@vueuse/integrations/useFocusTrap.mjs",
       "file": "vitepress___@vueuse_integrations_useFocusTrap.js",
-      "fileHash": "7fe80c5a",
+      "fileHash": "5c764b90",
       "needsInterop": false
     },
     "vitepress > mark.js/src/vanilla.js": {
       "src": "../../../../../node_modules/.pnpm/mark.js@8.11.1/node_modules/mark.js/src/vanilla.js",
       "file": "vitepress___mark__js_src_vanilla__js.js",
-      "fileHash": "23930afb",
+      "fileHash": "77d9ec20",
       "needsInterop": false
     },
     "vitepress > minisearch": {
       "src": "../../../../../node_modules/.pnpm/minisearch@6.3.0/node_modules/minisearch/dist/es/index.js",
       "file": "vitepress___minisearch.js",
-      "fileHash": "4f44b3dc",
-      "needsInterop": false
-    },
-    "@vitepress-preview/component": {
-      "src": "../../../../../_node_modules/vitepress-view-component/_product/preview-component.js",
-      "file": "@vitepress-preview_component.js",
-      "fileHash": "11ed302e",
-      "needsInterop": false
-    },
-    "@fortawesome/fontawesome-svg-core": {
-      "src": "../../../../../node_modules/.pnpm/@fortawesome+fontawesome-svg-core@6.5.2/node_modules/@fortawesome/fontawesome-svg-core/index.mjs",
-      "file": "@fortawesome_fontawesome-svg-core.js",
-      "fileHash": "d06cede7",
-      "needsInterop": false
-    },
-    "@fortawesome/free-solid-svg-icons": {
-      "src": "../../../../../node_modules/.pnpm/@fortawesome+free-solid-svg-icons@6.5.2/node_modules/@fortawesome/free-solid-svg-icons/index.mjs",
-      "file": "@fortawesome_free-solid-svg-icons.js",
-      "fileHash": "3bc956bf",
-      "needsInterop": false
-    },
-    "@fortawesome/vue-fontawesome": {
-      "src": "../../../../../node_modules/.pnpm/@fortawesome+vue-fontawesome@3.0.6_@fortawesome+fontawesome-svg-core@6.5.2_vue@3.4.27_typescript@5.4.5_/node_modules/@fortawesome/vue-fontawesome/index.es.js",
-      "file": "@fortawesome_vue-fontawesome.js",
-      "fileHash": "5d2eb947",
+      "fileHash": "649229aa",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-7WD5UAYX": {
-      "file": "chunk-7WD5UAYX.js"
+    "chunk-ICNROJVT": {
+      "file": "chunk-ICNROJVT.js"
     },
     "chunk-JWA4H7QR": {
       "file": "chunk-JWA4H7QR.js"
-    },
-    "chunk-FNPYXMAB": {
-      "file": "chunk-FNPYXMAB.js"
     }
   }
 }

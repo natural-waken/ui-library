@@ -1,5 +1,5 @@
 {
-    "name": "eric-ui",
+    "name": "ui-library",
     "version": "1.0.0",
     "description": "Components library by Vue3 + Ts",
     "type": "module",
