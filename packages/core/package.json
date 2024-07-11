@@ -33,7 +33,7 @@
         "build-umd:watch": "vite build --watch --config build/vite.umd.config.ts"
     },
     "keywords": [],
-    "author": "EricWXY",
+    "author": "lili",
     "license": "ISC",
     "devDependencies": {
         "@rollup/plugin-terser": "^0.4.4",
