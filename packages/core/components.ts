@@ -5,7 +5,7 @@
 import { LiButton } from "../components";
 import { LiIcon } from "../components";
 import { LiButtonGroup } from "../components";
-import { LiCollapse, LiCollapseItem, LiAlert, LiTooltip } from "../components";
+import { LiCollapse, LiCollapseItem, LiAlert, LiTooltip, LiPopconfirm } from "../components";
 import type { Plugin } from "vue";
 
 export default [
@@ -15,6 +15,7 @@ export default [
     LiCollapse,
     LiCollapseItem,
     LiAlert,
-    LiTooltip
+    LiTooltip,
+    LiPopconfirm
 ] as Plugin[]
 

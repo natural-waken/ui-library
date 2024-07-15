@@ -1,4 +1,6 @@
 import { defineConfig } from "vitepress";
+// import apiTable from "vitepress-api-table";
+
 import {
   containerPreview,
   componentPreview,
@@ -65,6 +67,7 @@ export default defineConfig({
     config(md) {
       md.use(containerPreview);
       md.use(componentPreview);
+      // md.use(apiTable);
     },
   },
 });
