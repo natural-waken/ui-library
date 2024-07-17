@@ -1,4 +1,4 @@
-import { makeInstaller } from "@ui-library/utils";
+import makeInstaller from "./makeInstaller";
 import components from "./components";
 import '@ui-library/theme/index.css'
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -14,4 +14,5 @@ const installer = makeInstaller(components);
 
 export * from '../components';  // 这个肯定要这样写  不然在线上无法看见
 // export * from '@ui-library/components';  // 新方法/
+export * from '@ui-library/locale';
 export default installer

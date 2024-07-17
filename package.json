@@ -30,6 +30,7 @@
         "@ui-library/theme": "workspace:*",
         "@ui-library/utils": "workspace:*",
         "@ui-library/vite-plugins": "workspace:*",
+        "@ui-library/locale": "workspace:*",
         "@vitepress-demo-preview/component": "^2.3.2",
         "add": "^2.0.6",
         "async-validator": "^4.2.5",
@@ -61,6 +62,7 @@
         "shelljs": "^0.8.5",
         "typescript": "^5.2.2",
         "vitest": "^1.4.0",
-        "vue-tsc": "^1.8.27"
+        "vue-tsc": "^1.8.27",
+        "vue3-i18n": "^1.1.5"
     }
 }

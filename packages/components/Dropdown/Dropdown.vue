@@ -13,7 +13,6 @@ import type {
 import { useDisabledStyle } from '@ui-library/hooks';
 
 import { DROPDOWN_CTX_KEY } from './constants';
-
 import DropdownItem from './DropdownItem.vue';
 import LiTooltip from '../Tooltip/Tooltip.vue';
 

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { mount } from '@vue/test-utils'
 import { defineComponent, createApp } from "vue";
-import { withInstall, makeInstaller } from "../install";
+import { withInstall } from "../install";
 
 const AppComp = defineComponent({
     setup() {
@@ -37,18 +37,4 @@ describe('install', () => {
         expect(app._context.components['CompB']).toBeTruthy();
     });
 
-    it('makeInstaller should be worked', () => {
-        const wrapper = mount(() => <div id="app"></div>);
-        const app = createApp(AppComp);
-        const installer = makeInstaller([compA, compB]);
-        // 这里假设 makeInstaller 返回一个函数，需要调用它
-        app.use(installer); // 假设的用法，具体取决于 makeInstaller 的实现
-
-        app.mount(wrapper.element);
-        // 以下期望可能需要根据实际实现进行调整
-        expect(installer).toBeDefined();
-        // 如果 makeInstaller 正确注册了组件，以下断言也应该为真
-        expect(app._context.components['CompA']).toBeTruthy();
-        expect(app._context.components['CompB']).toBeTruthy();
-    });
 });

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { addUnit } from '@ui-library/utils';
-// import { useLocale } from '@ui-library/hooks';
+import { useLocale } from '@ui-library/hooks';
 import type { TooltipInstance } from '../Tooltip';
 import type { PopconfirmProps, PopconfirmEmits } from './types';
 
@@ -26,7 +26,7 @@ const emits = defineEmits<PopconfirmEmits>();
 const tooltipRef = ref<TooltipInstance>();
 const style = computed(() => ({ width: addUnit(props.width) })); // 将宽度转换为带单位的字符串
 
-// const { t } = useLocale();  // 用于本地化
+const locale = useLocale(); // 用于本地化
 
 // 隐藏 tooltip
 function hidePopper() {
@@ -69,10 +69,10 @@ function cancel(e: MouseEvent) {
                         :type="cancelButtonType"
                         @click="cancel"
                     >
-                        <!-- {{
-                            cancelButtonText || t('popconfirm.cancelButtonText')
-                        }} -->
-                        {{ cancelButtonText || 'No' }}
+                        {{
+                            cancelButtonText ||
+                            locale.t('popconfirm.cancelButtonText')
+                        }}
                     </li-button>
                     <li-button
                         class="li-popconfirm__confirm"
@@ -80,12 +80,10 @@ function cancel(e: MouseEvent) {
                         :type="confirmButtonType"
                         @click="confrim"
                     >
-                        <!-- {{
+                        {{
                             confirmButtonText ||
-                            t('popconfirm.confirmButtonText')
-                        }} -->
-
-                        {{ confirmButtonText || 'Yes' }}
+                            locale.t('popconfirm.confirmButtonText')
+                        }}
                     </li-button>
                 </div>
             </div>

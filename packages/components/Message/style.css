@@ -1,0 +1,81 @@
+.li-message {
+    --li-message-bg-color: var(--li-color-info-light-9);
+    --li-message-border-color: var(--li-border-color-lighter);
+    --li-message-padding: 15px 19px;
+    --li-message-close-size: 16px;
+    --li-message-close-icon-color: var(--li-text-color-placeholder);
+    --li-message-close-hover-color: var(--li-text-color-secondary);
+    --li-message-icon-size: 16px;
+    --li-message-icon-margin: 8px;
+}
+
+.li-message {
+    width: fit-content;
+    max-width: calc(100% - 32px);
+    box-sizing: border-box;
+    border-radius: var(--li-border-radius-base);
+    border-width: var(--li-border-width);
+    border-style: var(--li-border-style);
+    border-color: var(--li-message-border-color);
+    position: fixed;
+    left: 50%;
+    top: 20px;
+    transform: translateX(-50%);
+    background-color: var(--li-message-bg-color);
+    padding: var(--li-message-padding);
+    display: flex;
+    align-items: center;
+    transition:
+        top var(--li-transition-duration),
+        opacity var(--li-transition-duration),
+        transform var(--li-transition-duration);
+    .li-message__icon {
+        color: var(--li-message-text-color);
+        font-size: var(--li-message-icon-size);
+        width: var(--li-message-icon-size);
+        margin-right: var(--li-message-icon-margin);
+    }
+    .li-message__content {
+        color: var(--li-message-text-color);
+        overflow-wrap: break-word;
+    }
+    &.is-close .li-message__content {
+        padding-right: 10px;
+    }
+    &.text-center {
+        justify-content: center;
+    }
+    .li-message__close {
+        display: flex;
+        align-items: center;
+    }
+    .li-message__close .li-icon {
+        cursor: pointer;
+    }
+}
+
+@each $val in info, success, warning, danger {
+    .li-message--$(val) {
+        --li-message-bg-color: var(--li-color-$(val)-light-9);
+        --li-message-border-color: var(--li-color-$(val)-light-8);
+        --li-message-text-color: var(--li-color-$(val));
+        .li-message__close {
+            --li-icon-color: var(--li-color-$(val));
+        }
+    }
+}
+
+.li-message--error {
+    --li-message-bg-color: var(--li-color-danger-light-9);
+    --li-message-border-color: var(--li-color-danger-light-8);
+    --li-message-text-color: var(--li-color-danger);
+    .li-message__close {
+        --li-icon-color: var(--li-color-danger);
+    }
+}
+
+.li-message.fade-up-enter-from,
+.li-message.fade-up-leave-to {
+    opacity: 0;
+    transform: translate(-50%, -100%);
+}
