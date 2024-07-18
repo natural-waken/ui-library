@@ -5,6 +5,7 @@ import useId from "./useId";
 import useLocale from "./useLocale";
 import useZIndex from "./useZIndex";
 import useOffset from "./useOffset";
+import useFocusController from "./useFocusController";
 
 export {
     useClickOutside,
@@ -13,5 +14,6 @@ export {
     useId,
     useLocale,
     useZIndex,
-    useOffset
+    useOffset,
+    useFocusController
 };

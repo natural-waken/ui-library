@@ -8,7 +8,7 @@ import { addUnit } from '@ui-library/utils';
 import { typeIconMap, RenderVnode } from '@ui-library/utils';
 import LiIcon from '../Icon/Icon.vue';
 
-defineOptions({ name: 'ErMessage' });
+defineOptions({ name: 'LiMessage' });
 
 const props = withDefaults(defineProps<MessageProps>(), {
     type: 'info',
