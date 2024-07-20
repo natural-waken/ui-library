@@ -1,0 +1,169 @@
+.li-message-box {
+    --li-message-box-title-color: var(--li-text-color-primary);
+    --li-message-box-width: 420px;
+    --li-message-box-border-radius: var(--li-border-radius-base);
+    --li-message-box-font-size: var(--li-font-size-large);
+    --li-message-box-content-font-size: var(--li-font-size-base);
+    --li-message-box-content-color: var(--li-text-color-regular);
+    --li-message-box-padding-primary: 12px;
+    --li-message-box-font-line-height: var(--li-font-size-medium);
+    --li-message-box-close-size: var(--li-message-close-size, 16px);
+}
+
+.li-overlay-message-box {
+    text-align: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 16px;
+    overflow: auto;
+
+    &::after {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        width: 0;
+        vertical-align: middle;
+    }
+}
+
+.li-message-box {
+    display: inline-block;
+    position: relative;
+    max-width: var(--li-message-box-width);
+    width: 100%;
+    padding: var(--li-message-box-padding-primary);
+    vertical-align: middle;
+    background-color: var(--li-bg-color);
+    border-radius: var(--li-message-box-border-radius);
+    font-size: var(--li-message-box-font-size);
+    text-align: left;
+    overflow: hidden;
+    backface-visibility: hidden;
+
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+
+    &:focus {
+        outline: none !important;
+    }
+
+    &.is-center {
+        .li-message-box__title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .li-message-box__footer,
+        .li-message-box__content {
+            justify-content: center;
+        }
+    }
+
+    :deep(.li-icon) {
+        @each $val in info, success, warning, danger {
+            &.li-icon-$(val) {
+                color: var(--li-color-$(val)) !important;
+            }
+        }
+        &.li-icon-error {
+            color: var(--li-color-danger) !important;
+        }
+    }
+
+    .li-message-box__header {
+        padding-bottom: var(--li-message-box-padding-primary);
+
+        .li-message-box__title {
+            color: var(--li-message-box-title-color);
+            font-size: var(--li-message-box-font-size);
+            line-height: var(--li-message-box-font-line-height);
+        }
+
+        .li-message-box__header-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: var(--li-message-box-close-size);
+            cursor: pointer;
+
+            i {
+                color: var(--li-color-info);
+                font-size: inherit;
+            }
+            &:focus,
+            &:hover {
+                i {
+                    color: var(--li-color-danger);
+                }
+            }
+        }
+
+        &.show-close {
+            padding-right: calc(
+                var(--li-message-box-padding-primary) +
+                    var(--li-message-box-close-size)
+            );
+        }
+    }
+
+    .li-message-box__content {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: var(--li-message-box-content-font-size);
+        color: var(--li-message-box-content-color);
+        .li-message-box__message {
+            margin: 0;
+            & p {
+                margin: 0;
+                line-height: var(--li-message-box-font-line-height);
+            }
+        }
+    }
+    .li-message-box__input {
+        padding-top: 12px;
+    }
+
+    .li-message-box__footer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        align-items: center;
+        padding-top: var(--li-message-box-padding-primary);
+    }
+}
+
+.fade-in-linear-enter-active {
+    .li-overlay-message-box {
+        animation: msgbox-fade-in var(--li-transition-duration);
+    }
+}
+
+.fade-in-linear-leave-active {
+    .li-overlay-message-box {
+        animation: msgbox-fade-in var(--li-transition-duration) reverse;
+    }
+}
+
+@keyframes msgbox-fade-in {
+    0% {
+        transform: translate3d(0, -20px, 0);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+}

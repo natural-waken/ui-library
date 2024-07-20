@@ -5,7 +5,7 @@
 import { LiButton } from "../components";
 import { LiIcon } from "../components";
 import { LiButtonGroup } from "../components";
-import { LiCollapse, LiCollapseItem, LiAlert, LiTooltip, LiPopconfirm, LiDropdown, LiDropdownItem, LiMessage, LiNotification, LiInput } from "../components";
+import { LiCollapse, LiCollapseItem, LiAlert, LiTooltip, LiPopconfirm, LiDropdown, LiDropdownItem, LiMessage, LiNotification, LiInput, LiMessageBox } from "../components";
 import type { Plugin } from "vue";
 
 // 这个里面的东西是为了我们在运用的时候  去 use  我们组件库   把这些组件注册到 vue app 实例上面   我们就可以直接不用引入
@@ -22,6 +22,7 @@ export default [
     LiDropdownItem,
     LiMessage,
     LiNotification,
-    LiInput
+    LiInput,
+    LiMessageBox
 ] as Plugin[]
 
