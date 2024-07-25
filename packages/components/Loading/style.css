@@ -1,0 +1,55 @@
+.li-loading {
+    --li-loading-icon-color: var(--li-color-primary);
+    --li-loading-mask-margin: 0;
+    --li-loading-mask-size: 100%;
+    --li-loading-icon-size: 42px;
+    --li-loading-font-size: 14px;
+    --li-loading-z-index: 20000;
+}
+.li-loading {
+    opacity: 1;
+    transition: opacity var(--li-transition-duration);
+    &.li-loading__mask {
+        position: absolute;
+        margin: var(--li-loading-mask-margin);
+        top: var(--li-loading-mask-margin);
+        right: var(--li-loading-mask-margin);
+        bottom: var(--li-loading-mask-margin);
+        left: var(--li-loading-mask-margin);
+        height: var(--li-loading-mask-size);
+        width: var(--li-loading-mask-size);
+        z-index: var(--li-loading-z-index);
+        background: var(--li-loading-bg-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &.is-fullscreen {
+            position: fixed;
+        }
+    }
+    .li-loading__spinner {
+        color: var(--li-loading-icon-color);
+        text-align: center;
+        .li-loading-text {
+            margin: 3px 0;
+            font-size: var(--li-loading-font-size);
+        }
+        i {
+            font-size: var(--li-loading-icon-size);
+        }
+    }
+}
+.fade-in-linear-enter-from,
+.fade-in-linear-leave-to {
+    opacity: 0;
+}
+
+/* 这个是父元素加的  因为子元素要使用  不加全屏展示无法生效  定位不准确  可能是半屏
+    而且这个定位必须是在这个父级元素 create 之后加才行
+*/
+.li-loading-parent--relative {
+    position: relative !important;
+}
+.li-loading-parent--hiden {
+    overflow: hidden !important;
+}

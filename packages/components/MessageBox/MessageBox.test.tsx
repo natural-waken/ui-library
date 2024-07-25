@@ -1,19 +1,9 @@
 import { describe, it, expect, vi } from "vitest";
-import { nextTick } from "vue";
 import type { MessageBoxType } from "./types";
 import MessageBox from "./methods";
+import { rAF } from '@ui-library/utils'
 
-// 定义一个 rAF 函数，用于等待两次 requestAnimationFrame 和一个 nextTick。这用于确保在测试中等待 DOM 完全更新
-export const rAF = async () => {
-    return new Promise((res) => {
-        requestAnimationFrame(() => {
-            requestAnimationFrame(async () => {
-                res(null);
-                await nextTick();
-            });
-        });
-    });
-};
+
 
 describe("MessageBox Component", () => {
     // 测试是否可以正确渲染

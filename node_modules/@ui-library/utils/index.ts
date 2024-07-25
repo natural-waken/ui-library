@@ -29,6 +29,7 @@ export const RenderVnode = defineComponent({
 export * from "./install";
 export * from "./error";
 export * from "./style";
+export * from "./test";
 
 
 

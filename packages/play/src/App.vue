@@ -24,24 +24,39 @@ function cancel() {
 </template>
 
 <style scoped></style> -->
-<script setup lang="ts">
-import { LiMessageBox, LiMessage } from 'ui-library';
+<script setup>
+import { ref } from 'vue';
+import { LiLoading } from 'ui-library';
 
-function openConfirm() {
-    LiMessageBox.confirm(
-        'proxy will permanently delete the file. Continue?',
-        'Warning',
-        { type: 'warning' },
-    )
-        .then((action) => {
-            LiMessage.info(`action: ${action}`);
-        })
-        .catch((action) => {
-            LiMessage.warning(`action: ${action}`);
-        });
+const loading = ref(false);
+
+function openLoading1() {
+    loading.value = true;
+    setTimeout(() => {
+        loading.value = false;
+    }, 2000);
+}
+
+function openLoading2() {
+    const _loading = LiLoading.service({
+        lock: true,
+        spinner: 'circle-notch',
+        text: '加载中...',
+        background: 'rgba(255,255,255,0.5)',
+    });
+    setTimeout(() => {
+        _loading.close();
+    }, 2000);
 }
 </script>
 
 <template>
-    <li-button @click="openConfirm" plain> Click to open the Confirm</li-button>
+    <li-button
+        v-loading.fullscreen.lock="loading"
+        type="primary"
+        @click="openLoading1"
+    >
+        As a directive
+    </li-button>
+    <li-button type="primary" @click="openLoading2"> As a service </li-button>
 </template>

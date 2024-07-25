@@ -1,14 +1,14 @@
-<!-- ---
+---
 title: Alert
 description: Alert 组件文档
 
 next:
-  link: /components/loading
-  text: Loading 加载
+    link: /components/loading
+    text: Loading 加载
 
 prev:
-  link: /components/dropdown
-  text: Dropdown 下拉菜单
+    link: /components/dropdown
+    text: Dropdown 下拉菜单
 ---
 
 # Alert 提示
@@ -103,4 +103,4 @@ demo-preview=../demo/alert/IconDesc.vue
 | Name  | Description | Type         |
 | ----- | ----------- | ------------ |
 | open  | 打开 Alert  | `() => void` |
-| close | 关闭 Alert  | `() => void` | -->
+| close | 关闭 Alert  | `() => void` |

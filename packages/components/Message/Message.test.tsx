@@ -1,19 +1,6 @@
 import { describe, test, expect } from "vitest";
-import { nextTick } from "vue";
 import { message, closeAll } from "./methods";
-
-// 异步函数，返回一个 Promise 对象
-const rAF = async () => {
-    return new Promise((res) => {
-        // requestAnimationFrame 用于在浏览器下次重绘之前执行一个函数
-        requestAnimationFrame(() => {
-            requestAnimationFrame(async () => {
-                res(null);  // 调用 res(null) 解决 Promise，表示 Promise 完成
-                await nextTick();  // 确保在下一个事件循环中执行
-            });
-        });
-    });
-};
+import { rAF } from '@ui-library/utils'
 
 // 获取指定元素的 top 样式属性值
 function getTopValue(element: Element) {
