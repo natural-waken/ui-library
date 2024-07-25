@@ -13,7 +13,7 @@ interface _TooltipProps extends TooltipProps {
 }
 
 defineOptions({
-    name: 'ErTooltip',
+    name: 'LiTooltip',
 });
 const props = withDefaults(defineProps<_TooltipProps>(), {
     placement: 'bottom',
