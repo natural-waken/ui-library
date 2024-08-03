@@ -1,0 +1,76 @@
+.li-select {
+    --li-select-item-hover-bg-color: var(--li-fill-color-light);
+    --li-select-item-font-size: var(--li-font-size-base);
+    --li-select-item-font-color: var(--li-text-color-regular);
+    --li-select-item-selected-font-color: var(--li-color-primary);
+    --li-select-item-disabled-font-color: var(--li-text-color-placeholder);
+    --li-select-input-focus-border-color: var(--li-color-primary);
+}
+
+.li-select {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 32px;
+    :deep(.li-tooltip__popper) {
+        padding: 0;
+    }
+
+    :deep(.li-input) {
+        .header-angle {
+            transition: transform var(--li-transition-duration);
+            &.is-active {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    .li-select__nodata,
+    .li-select__loading {
+        padding: 10px 0;
+        margin: 0;
+        text-align: center;
+        color: var(--li-text-color-secondary);
+        font-size: var(--li-select-font-size);
+    }
+    .li-select__menu {
+        list-style: none;
+        margin: 6px 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .li-select__menu-item {
+        margin: 0;
+        font-size: var(--li-select-item-font-size);
+        padding: 0 32px 0 20px;
+        position: relative;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: var(--li-select-item-font-color);
+        height: 34px;
+        line-height: 34px;
+        box-sizing: border-box;
+        cursor: pointer;
+        &:hover {
+            background-color: var(--li-select-item-hover-bg-color);
+        }
+        &.is-selected {
+            color: var(--li-select-item-selected-font-color);
+            font-weight: 700;
+        }
+        &.is-highlighted {
+            background-color: var(--li-select-item-hover-bg-color);
+        }
+        &.is-disabled {
+            color: var(--li-select-item-disabled-font-color);
+            cursor: not-allowed;
+            &:hover {
+                background-color: transparent;
+            }
+        }
+    }
+
+    :deep(.li-input__inner) {
+        cursor: pointer;
+    }
+}
