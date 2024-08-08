@@ -18,7 +18,7 @@ export interface SelectOptionProps {
 
 // Select 组件的属性
 export interface SelectProps {
-    modelValue: string;  // 绑定值s
+    modelValue: string;  // 绑定值
     id?: string;  // 可选的组件 ID
     options?: SelectOptionProps[];  // 选项数组
     placeholder?: string;   // 占位符

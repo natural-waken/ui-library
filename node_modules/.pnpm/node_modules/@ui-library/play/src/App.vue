@@ -28,12 +28,23 @@ function cancel() {
 import { ref } from 'vue';
 
 const options = ref([
-    { value: 'beijing', label: 'Zone One' },
-    { value: 'shanghai', label: 'Zone Two' },
+    { value: 'beijing', label: 'Beijing' },
+    { value: 'shanghai', label: 'Shanghai' },
+    { value: 'xian', label: 'Xian', disabled: true },
+    { value: 'shenzhen', label: 'Shenzhen' },
 ]);
 const value = ref('');
 </script>
 
 <template>
-    <li-select v-model="value" :options="options" clearable />
+    <li-select v-model="value" :options="options" filterable clearable />
+
+    <li-select v-model="value" filterable clearable>
+        <li-option value="beijing" label="Beijing"></li-option>
+        <li-option value="shanghai" label="Shanghai"></li-option>
+        <li-option value="xian" label="Xian" disabled></li-option>
+        <li-option value="shenzhen" label="Shenzhen"></li-option>
+    </li-select>
 </template>
+
+<style></style>

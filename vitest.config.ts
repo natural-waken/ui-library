@@ -1,4 +1,6 @@
 /// <reference types="vitest" />
+// 这条命令告诉 TypeScript 编译器在编译时引入 vitest 类型声明文件
+
 import { defineConfig } from "vite";
 import { resolve } from "path";
 import vue from "@vitejs/plugin-vue";
