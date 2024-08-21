@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue';
-import { LiMessage, type FormProps } from 'eric-ui';
+import { LiMessage, type FormProps } from 'ui-library';
 
 const form = reactive({
     name: '',
