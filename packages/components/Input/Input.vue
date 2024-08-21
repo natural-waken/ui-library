@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { ref, computed, watch, useAttrs, shallowRef, nextTick } from 'vue';
-import { useFocusController, useId } from '@ui-library/hooks';
+import { useFocusController } from '@ui-library/hooks';
+import { useFormItem, useFormDisabled, useFormItemInputId } from '../Form';
 import { each, noop } from 'lodash-es';
 import type { InputProps, InputEmits, InputInstance } from './types';
 
 import Icon from '../Icon/Icon.vue';
+import { debugWarn } from '@ui-library/utils';
 
 defineOptions({
     name: 'LiInput',
@@ -24,10 +26,14 @@ const pwdVisible = ref(false); // 控制密码是否可见
 const inputRef = shallowRef<HTMLInputElement>();
 const textareaRef = shallowRef<HTMLTextAreaElement>();
 
-const _ref = computed(() => inputRef.value || textareaRef.value);
-
 const attrs = useAttrs(); // 获取的组件的所有非 prop 属性
-const isDisabled = computed(() => props.disabled);
+const { formItem } = useFormItem();
+
+const _ref = computed(() => inputRef.value || textareaRef.value);
+// const isDisabled = computed(() => props.disabled);
+const isDisabled = useFormDisabled(); // 这个方法里面就是我们取到的当前组件 disabled 或者是 form
+// 再把 inputId 写了
+const { inputId } = useFormItemInputId(props, formItem);
 
 // 确定是否显示清除按钮
 // clearable 属性为真、innerValue 不为空、未禁用，并且组件处于焦点状态
@@ -53,7 +59,8 @@ const { wrapperRef, isFocused, handleFocus, handleBlur } = useFocusController(
     {
         afterBlur() {
             // form 校验
-            console.log('after');
+            // 也就是说   每个 rule 和 blur 相关的都校验
+            formItem?.validate('blur').catch((err) => debugWarn(err));
         },
     },
 );
@@ -64,6 +71,7 @@ const clear: InputInstance['clear'] = function () {
     each(['input', 'change', 'update:modelValue'], (e) => emits(e as any, ''));
     emits('clear');
     // 清空表单校验
+    formItem?.clearValidate();
 };
 const focus: InputInstance['focus'] = async function () {
     await nextTick();
@@ -141,7 +149,7 @@ defineExpose<InputInstance>({
                 <input
                     class="li-input__inner"
                     ref="inputRef"
-                    :id="useId().value"
+                    :id="inputId"
                     :type="
                         showPassword ? (pwdVisible ? 'text' : 'password') : type
                     "
@@ -196,7 +204,7 @@ defineExpose<InputInstance>({
             <textarea
                 class="li-textarea__wrapper"
                 ref="textareaRef"
-                :id="useId().value"
+                :id="inputId"
                 :disabled="isDisabled"
                 :readonly="readonly"
                 :autocomplete="autocomplete"

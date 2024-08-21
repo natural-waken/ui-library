@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>麻将三筒布局</title>
+    <style>
+        /* 基本布局和样式 */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .mahjong-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mahjong-tile {
+            width: 100px;
+            height: 140px;
+            border: 1px solid #000;
+            border-radius: 5px;
+            background: #fff;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .tile-face {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .circle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: red;
+            margin: 5px 0;
+        }
+
+        .top {
+            margin-top: 10px;
+        }
+
+        .middle {
+            margin: 5px 0;
+        }
+
+        .bottom {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mahjong-container">
+        <div class="mahjong-tile">
+            <div class="tile-face">
+                <div class="circle top"></div>
+                <div class="circle middle"></div>
+                <div class="circle bottom"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

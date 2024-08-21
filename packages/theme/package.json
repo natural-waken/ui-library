@@ -1,12 +1,13 @@
 {
-  "name": "@ui-library/theme",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.css",
-  "scripts": {
-    "test": "echo 'todo'"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+    "name": "@ui-library/theme",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.css",
+    "private": true,
+    "scripts": {
+        "test": "echo 'todo'"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
 }
