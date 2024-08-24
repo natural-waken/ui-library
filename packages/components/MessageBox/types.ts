@@ -11,10 +11,12 @@ export type MessageBoxCallback = (
     action: MessageBoxAction | { value: string; action: MessageBoxAction }
 ) => void;
 
+// 表示消息框输入的数据
 export type MessageBoxInputData = {
-    value: string;
-    action: MessageBoxAction;
+    value: string;  // 输入框中值
+    action: MessageBoxAction;  // 触发的动作
 };
+// 包括消息框的输入数据和动作   合并了这两个
 export type MessageBoxData = MessageBoxInputData & MessageBoxAction;
 
 // 配置消息框的各种选项
@@ -24,7 +26,7 @@ export interface MessageBoxOptions {
     type?: MessageType;  // 消息类型
     boxType?: MessageBoxType;  // 消息框类型
     icon?: string;  // 消息框图标
-    callback?: MessageBoxCallback;
+    callback?: MessageBoxCallback;   // 动作的回调函数
     showClose?: boolean;  // 是否显示关闭按钮
     showInput?: boolean; // 是否显示输入框
     showCancelButton?: boolean;
@@ -49,6 +51,7 @@ export interface MessageBoxOptions {
     inputType?: "text" | "textarea" | "password" | "number";  // 输入框的类型（文本、文本区域、密码、数字）
 
     buttonSize?: "default" | "small" | "large";
+    // 关闭前的回调  用于执行额外逻辑
     beforeClose?: (
         action: MessageBoxAction,
         instance: MessageBoxOptions,
@@ -56,6 +59,7 @@ export interface MessageBoxOptions {
     ) => void;
 }
 
+// 消息框的属性
 export interface MessageBoxProps extends MessageBoxOptions {
     visible?: Ref<boolean>;  // 一个引用类型，用于控制消息框的显示状态
     doClose(): void;  // 关闭消息框

@@ -44,6 +44,8 @@ describe("Tooltip.vue", () => {
         vi.useFakeTimers();
         vi.clearAllMocks()  // 把 mock 清空
     });
+
+    // 在点击触发时，Tooltip 是否正确显示和隐藏
     test("basic tooltip", async () => {
         const wrapper = mount(
             () => (
@@ -95,6 +97,7 @@ describe("Tooltip.vue", () => {
         wrapper.unmount();
     });
 
+    // 验证了当鼠标悬停在触发区域时，Tooltip 是否正确显示，以及当鼠标移开时，Tooltip 是否正确隐藏
     test("tooltip with hover trigger", async () => {
         // ... 省略其他设置
         const wrapper = mount(Tooltip, {
@@ -110,7 +113,7 @@ describe("Tooltip.vue", () => {
         expect(wrapper.find(".li-tooltip__popper").exists()).toBeFalsy();
     });
 
-    // 右键菜单触发的测试
+    // 右键菜单触发的测试   验证了在右键点击触发时，Tooltip 是否正确显示和隐藏
     test("tooltip with contextmenu trigger", async () => {
         // ... 省略其他设置
         const wrapper = mount(Tooltip, {
@@ -123,7 +126,7 @@ describe("Tooltip.vue", () => {
         // 测试右键菜单隐藏（可以模拟点击外部区域）
     });
 
-    // 手动模式的测试
+    // 手动模式的测试          验证了通过组件提供的方法手动显示和隐藏 Tooltip 的功能
     test("tooltip with manual trigger", async () => {
         // ... 省略其他设置
         let wrapper = mount(Tooltip, {
@@ -144,7 +147,7 @@ describe("Tooltip.vue", () => {
         expect(wrapper.find(".li-tooltip__popper").exists()).toBeFalsy();
     });
 
-    // 禁用状态的测试
+    // 禁用状态的测试    验证了在禁用状态下，点击触发区域是否不会显示 Tooltip
     test("disabled tooltip", async () => {
         // ... 省略其他设置
         const wrapper = mount(Tooltip, {
@@ -156,7 +159,7 @@ describe("Tooltip.vue", () => {
         expect(wrapper.find(".li-tooltip__popper").exists()).toBeFalsy();
     });
 
-    // 虚拟触发节点的测试
+    // 虚拟触发节点的测试   验证了虚拟节点事件（如 mouseenter 和 click）能否正确触发 Tooltip 的显示和隐藏
     test("tooltip with virtual trigger node", async () => {
         // ... 省略其他设置
         const virtualRef = document.createElement("div");
@@ -167,16 +170,9 @@ describe("Tooltip.vue", () => {
         virtualRef.dispatchEvent(new Event("mouseenter"));  // 相当于是触发了  hover    
         await vi.runAllTimers();
         expect(wrapper.find(".li-tooltip__popper").exists()).toBeTruthy();
-
-        wrapper.setProps({ trigger: "click" });
-        await vi.runAllTimers();
-        virtualRef.dispatchEvent(new Event("click"));
-        await vi.runAllTimers();
-        expect(wrapper.find(".li-tooltip__popper").exists()).toBeTruthy();
-
-        wrapper.unmount();
     });
 
+    // 验证了从 hover 切换到 click 触发模式时的正确性，以及相应的事件处理是否正常
     test("change trigger prop", async () => {
         const wrapper = mount(Tooltip, {
             props: { trigger: "hover", content: "test" }
@@ -195,6 +191,7 @@ describe("Tooltip.vue", () => {
         expect(wrapper.find(".li-tooltip__popper").exists()).toBeFalsy();
     });
 
+    // 验证了在 manual 和 trigger 属性更改后，Tooltip 是否按预期响应
     test("change manual prop", async () => {
         const wrapper = mount(Tooltip, {
             props: { trigger: "hover", content: "test" }

@@ -4,74 +4,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>麻将三筒布局</title>
-    <style>
-        /* 基本布局和样式 */
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-
-        .mahjong-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .mahjong-tile {
-            width: 100px;
-            height: 140px;
-            border: 1px solid #000;
-            border-radius: 5px;
-            background: #fff;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-            position: relative;
-        }
-
-        .tile-face {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-        }
-
-        .circle {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: red;
-            margin: 5px 0;
-        }
-
-        .top {
-            margin-top: 10px;
-        }
-
-        .middle {
-            margin: 5px 0;
-        }
-
-        .bottom {
-            margin-bottom: 10px;
-        }
-    </style>
+    <title>Document</title>
 </head>
 
 <body>
-    <div class="mahjong-container">
-        <div class="mahjong-tile">
-            <div class="tile-face">
-                <div class="circle top"></div>
-                <div class="circle middle"></div>
-                <div class="circle bottom"></div>
-            </div>
-        </div>
-    </div>
+    <script>
+
+
+        // 构建哈夫曼树
+
+        // 层序遍历哈夫曼树，构建对象形式的树结构
+
+
+        // 主函数
+        function recoverHuffmanTree(leaf, values) {
+            class TreeNode {
+                constructor(value = 0, left = null, right = null) {
+                    this.value = value;
+                    this.left = left;
+                    this.right = right;
+                }
+            }
+            function buildHuffmanTree(leaf, values) {
+                // 创建叶子节点
+                const nodes = leaf.map((code, i) => new TreeNode(values[i]));
+
+                // 生成哈夫曼树
+                while (nodes.length > 1) {
+                    nodes.sort((a, b) => a.value - b.value);
+
+                    const left = nodes.shift();
+                    const right = nodes.shift();
+
+                    const merged = new TreeNode(left.value + right.value, left, right);
+                    nodes.push(merged);
+                }
+
+                return nodes[0] || null;
+            }
+
+            const huffmanTree = buildHuffmanTree(leaf, values);
+
+            function getLevelOrderObject(tree) {
+                if (!tree) return {};
+
+                const result = [];
+                const queue = [{ node: tree, index: 0 }];
+
+                while (queue.length > 0) {
+                    const { node, index } = queue.shift();
+                    if (node) {
+                        result[index] = node.value;
+                        queue.push({ node: node.left, index: 2 * index + 1 });
+                        queue.push({ node: node.right, index: 2 * index + 2 });
+                    } else {
+                        result[index] = '#';
+                    }
+                }
+
+                // 修剪结果中不需要的尾部空节点
+                let i = result.length - 1;
+                while (i >= 0 && result[i] === '#') {
+                    i--;
+                }
+
+                return result.slice(0, i + 1).reduce((acc, val, i) => {
+                    if (val !== undefined) acc[i] = val;
+                    return acc;
+                }, {});
+            }
+
+
+            return getLevelOrderObject(huffmanTree);
+        }
+
+        // 示例使用
+        const leaf = ["0", "10", "110", "111"];
+        const values = [3, 1, 1, 2];
+        console.log(recoverHuffmanTree(leaf, values));
+    </script>
 </body>
 
 </html>

@@ -56,6 +56,8 @@ defineExpose<ButtonInstance>({
 });
 </script>
 
+<!-- 动态渲染组件 -->
+<!-- :is 指令用于根据 tag 的值动态渲染不同的 HTML 元素或组件。  可以是 div a button -->
 <template>
     <component
         :is="tag"

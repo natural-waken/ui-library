@@ -13,7 +13,7 @@ defineOptions({
 
 const props = defineProps<CollapseProps>();
 const emits = defineEmits<CollapseEmits>();
-const activeNames = ref(props.modelValue);
+const activeNames = ref(props.modelValue); // 用于追踪当前展开的折叠项
 
 // 判断要是手风琴模式为 true, 并且数组长度大于 1
 if (props.accordion && activeNames.value.length > 1) {
@@ -53,10 +53,10 @@ function handleItemClick(item: CollapseItemName) {
 //     emits('change', newNames);
 // }
 function updateActiveNames(val: CollapseItemName[]) {
-  activeNames.value = val;
-  each(["update:modelValue", "change"], (e) =>
-    emits(e as "update:modelValue" & "change", val)
-  );
+    activeNames.value = val;
+    each(['update:modelValue', 'change'], (e) =>
+        emits(e as 'update:modelValue' & 'change', val),
+    );
 }
 
 watchEffect(() => {

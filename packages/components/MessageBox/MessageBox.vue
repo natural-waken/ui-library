@@ -31,8 +31,8 @@ const props = withDefaults(defineProps<MessageBoxProps>(), {
     showConfirmButton: true,
 });
 
-const { doAction } = props;
-const { nextZIndex } = useZIndex();
+const { doAction } = props;  // 提取回调
+const { nextZIndex } = useZIndex();  // 下个的 index
 
 const headerRef = ref<HTMLElement>();
 const inputRef = ref<InputInstance>();
@@ -74,10 +74,10 @@ function handleWrapperClick() {
 function handleInputEnter(e: KeyboardEvent) {
     if (state.inputType === 'textarea') return;
     e.preventDefault();
-    return handleAction('confirm');
+    return handleAction('confirm');  // 回车就是默认提交
 }
 
-// 如果 beforeClose 是函数，则调用它，并在回调中执行 doAction。否则，直接执行 doAction
+// 如果 beforeClose 是函数，则先调用它，然后执行动作    在回调中执行 doAction。否则，直接执行 doAction
 function handleAction(action: MessageBoxAction) {
     isFunction(props.beforeClose)
         ? props.beforeClose(action, state, () =>

@@ -5,7 +5,7 @@ import type { ButtonType, ButtonSize } from "../Button/types";
 export type DropdownCommand = string | number;  // 用于表示下拉菜单项的命令
 
 export interface DropdownItemProps {  // 描述下拉菜单项的属性
-    command?: DropdownCommand;
+    command?: DropdownCommand; // 用于标识菜单项的操作。
     label: string | VNode;
     disabled?: boolean;  // 表示菜单项是否禁用
     divided?: boolean;  // 表示菜单项是否有分割线
@@ -14,9 +14,9 @@ export interface DropdownItemProps {  // 描述下拉菜单项的属性
 export interface DropdownProps extends TooltipProps {  // 描述下拉菜单组件的属性
     type?: ButtonType;
     size?: ButtonSize;
-    items?: DropdownItemProps[];
+    items?: DropdownItemProps[];  // 表示下拉菜单项的列表
     hideOnClick?: boolean;
-    splitButton?: boolean;
+    splitButton?: boolean;  // 表示是否使用分割按钮
 }
 
 export interface DropdownEmits {  // 描述下拉菜单组件的事件
@@ -31,6 +31,6 @@ export interface DropdownInstance {  // 描述下拉菜单组件实例的方法
 }
 
 export interface DropdownContext {  // 描述下拉菜单组件的上下文
-    handleItemClick(item: DropdownItemProps): void;
-    size: ComputedRef<ButtonSize | void>;
+    handleItemClick(item: DropdownItemProps): void;  // 处理菜单项点击事件的函数
+    size: ComputedRef<ButtonSize | void>;  // 表示下拉菜单项的大小
 }

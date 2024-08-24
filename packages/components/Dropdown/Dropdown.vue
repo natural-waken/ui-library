@@ -11,6 +11,7 @@ import type {
     DropdownContext,
 } from './types';
 import { useDisabledStyle } from '@ui-library/hooks';
+import { useId } from '@ui-library/hooks'; // 这个是生成每个 item 的唯一 id
 
 import { DROPDOWN_CTX_KEY } from './constants';
 import DropdownItem from './DropdownItem.vue';
@@ -18,7 +19,7 @@ import LiTooltip from '../Tooltip/Tooltip.vue';
 
 defineOptions({
     name: 'LiDropdown',
-    inheritAttrs: false,
+    inheritAttrs: false, // 禁用默认的属性继承
 });
 const props = withDefaults(defineProps<DropdownProps>(), {
     hideOnClick: true,
@@ -27,9 +28,9 @@ const props = withDefaults(defineProps<DropdownProps>(), {
 const emits = defineEmits<DropdownEmits>();
 const slots = defineSlots();
 
+// 用于引用 Tooltip 和 Button 实例
 const tooltipRef = ref<TooltipInstance>();
 const triggerRef = ref<ButtonInstance>();
-const virtualRef = computed(() => triggerRef.value?.ref ?? void 0);
 
 // 从 dropdown props 中排除这些就是 tooltip props  因为我们 dropdown props 是从 tooltip props 中继承的
 const tooltipProps = computed(
@@ -61,17 +62,22 @@ defineExpose<DropdownInstance>({
 </script>
 
 <template>
-    <div class="li-dropdown" :class="{ 'is-disabled': props.disabled }">
+    <div
+        class="li-dropdown"
+        :id="`dropdown-${useId().value}`"
+        :class="{ 'is-disabled': props.disabled }"
+    >
         <!-- 当 splitButton 为真时，启用虚拟触发     将 triggerRef 的值作为虚拟引用 -->
         <li-tooltip
             ref="tooltipRef"
             v-bind="tooltipProps"
             :virtual-triggering="splitButton"
-            :virtual-ref="virtualRef?.value"
+            :virtual-ref="triggerRef"
             @visible-change="$emit('visible-change', $event)"
         >
             <!-- 当 splitButton 为真时，渲染一个 li-button-group 组件。 -->
             <!-- button group 大小 size 是外部展示的 按钮大小 -->
+            <!-- 就是触发的东西  要是有 虚拟触发的 -->
             <li-button-group
                 v-if="splitButton"
                 :type="type"
@@ -85,12 +91,19 @@ defineExpose<DropdownInstance>({
                 <!-- 显示向下箭头图标 -->
             </li-button-group>
 
-            <slot name="default" v-else></slot>
+            <slot v-else name="default"></slot>
             <!-- 如果 splitButton 为假，直接渲染名为 default 的插槽内容 -->
+
+            <!-- 渲染下拉菜单项 -->
+            <!-- 这里使用的是  就是到时候会传给 tooltip 里面的 content -->
             <template #content>
                 <div class="li-dropdown__menu">
+                    <!-- 没有插槽就显示 template 内容 -->
                     <slot name="dropdown">
-                        <template v-for="item in items" :key="item.command">
+                        <template
+                            v-for="item in items"
+                            :key="item.command ?? useId().value"
+                        >
                             <dropdown-item v-bind="item" />
                         </template>
                     </slot>

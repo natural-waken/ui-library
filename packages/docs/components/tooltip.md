@@ -42,6 +42,20 @@ demo-preview=../demo/tooltip/Slot.vue
 demo-preview=../demo/tooltip/Disabled.vue
 :::
 
+## 触发方式使用 click
+
+触发方式采用点击触发 那么当我们 clickout 时候 外部就会取消可见性
+::: preview
+demo-preview=../demo/tooltip/Click.vue
+:::
+
+## 触发方式使用 contextmenu
+
+触发方式采用右键点击触发
+::: preview
+demo-preview=../demo/tooltip/Contextmenu.vue
+:::
+
 ## Tooltip API
 
 ### Props

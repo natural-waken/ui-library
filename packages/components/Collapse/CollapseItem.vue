@@ -35,6 +35,7 @@ function handleClick() {
             }"
             @click="handleClick"
         >
+            <!-- 标题具名插槽 -->
             <span class="li-collapse-item__title">
                 <slot name="title">
                     {{ title }}

@@ -14,6 +14,8 @@ type SFCWithInstall<T> = T & Plugin;
 //     return install as Plugin;
 // }
 
+
+// 当你需要在 Vue 应用中注册一个组件时，可以使用这个函数。它会为组件添加一个 install 方法，允许你通过 app.use() 的方式在全局注册这个组件
 export const withInstall = <T>(component: T) => {
     if (component) {//新加的
 
@@ -29,7 +31,7 @@ export const withInstall = <T>(component: T) => {
 
 
 
-
+//  当你需要将一个工具函数（如消息提示、通知等）全局注册为 Vue 实例的属性时，可以使用这个函数。
 export const withInstallFunction = <T>(fn: T, name: string) => {
     // 将函数 fn 类型断言为 SFCWithInstall<T>，然后为其添加一个 install 方法
     (fn as SFCWithInstall<T>).install = (app: App) => {

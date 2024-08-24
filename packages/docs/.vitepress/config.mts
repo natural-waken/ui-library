@@ -51,11 +51,11 @@ export default defineConfig({
                     { text: "Tooltip 文字提示", link: "components/tooltip" },
                 ],
             },
-            // {
-            //   text: "表单组件",
-            //   collapsed: false,
-            //   items: [{ text: "Form 表单", link: "components/form" }],
-            // },
+            {
+                text: "表单组件",
+                collapsed: false,
+                items: [{ text: "Form 表单", link: "components/form" }],
+            },
         ],
 
         socialLinks: [

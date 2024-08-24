@@ -12,3 +12,5 @@
         <li-button>Delete</li-button>
     </li-popconfirm>
 </template>
+
+<script></script>

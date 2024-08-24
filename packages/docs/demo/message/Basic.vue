@@ -17,6 +17,6 @@ const openVn = () => {
 </script>
 
 <template>
-    <er-button :plain="true" @click="open">Show message</er-button>
-    <er-button :plain="true" @click="openVn">VNode</er-button>
+    <li-button :plain="true" @click="open">Show message</li-button>
+    <li-button :plain="true" @click="openVn">VNode</li-button>
 </template>

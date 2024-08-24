@@ -104,11 +104,16 @@ defineExpose<MessageCompInstance>({
             @mouseleave="startTimmer"
         >
             <li-icon class="li-message__icon" :icon="iconName" />
+
+            <!-- message 内容 -->
             <div class="li-message__content">
                 <slot>
+                    <!-- 整个 message 是 props 中 message 传入的内容 -->
                     <render-vnode v-if="message" :vNode="message" />
                 </slot>
             </div>
+
+            <!-- 要是显示关闭按钮  就显示 -->
             <div class="li-message__close" v-if="showClose">
                 <li-icon icon="xmark" @click.stop="close" />
             </div>

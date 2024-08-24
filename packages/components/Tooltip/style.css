@@ -7,6 +7,7 @@
     display: inline-block;
 }
 .li-tooltip {
+    /* 过渡动画效果  因为我的动画名称叫 fade  所有类名前面是以 fade 开头  显示和隐藏时的过渡效果 */
     .fade-enter-active,
     .fade-leave-active {
         transition: opacity var(--li-transition-duration);
@@ -17,6 +18,7 @@
         opacity: 0;
     }
 
+    /* 弹出内容的样式 */
     .li-tooltip__popper {
         background: var(--li-popover-bg-color);
         border-radius: var(--li-popover-border-radius);
@@ -30,6 +32,8 @@
         word-break: break-all;
         box-sizing: border-box;
         z-index: 1000;
+
+        /* 箭头的样式 */
         #arrow,
         #arrow::before {
             position: absolute;
@@ -46,6 +50,7 @@
             content: '';
             transform: rotate(45deg);
         }
+        /* 不同方向箭头的定制 */
         &[data-popper-placement^='top'] > #arrow {
             bottom: -5px;
         }
@@ -61,6 +66,8 @@
         &[data-popper-placement^='right'] > #arrow {
             left: -5px;
         }
+
+        /* 箭头边框的设置 */
         &[data-popper-placement^='top'] > #arrow::before {
             border-right: 1px solid var(--li-popover-border-color);
             border-bottom: 1px solid var(--li-popover-border-color);

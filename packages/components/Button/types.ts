@@ -51,6 +51,7 @@ export interface ButtonGroupProps {
 }
 
 // 按钮组上下文的定义
+// 用于提供给按钮组内的按钮组件的上下文
 export interface ButtonGroupContext {
     // 按钮组的大小，可以是 'large', 'default', 'small' 之一
     size?: ButtonSize;
@@ -61,9 +62,10 @@ export interface ButtonGroupContext {
 }
 
 
-// 接口 ButtonEmits 定义了一个事件处理函数的签名，该函数接收一个事件名称 'click' 
+// 接口 ButtonEmits 定义了一个事件处理函数的签名，该函数接收一个事件名称 'click'
 // 和一个 MouseEvent 对象作为参数，并且没有返回值。
 // 定义按钮组件的事件处理类型
+// 处理 'click' 事件
 export interface ButtonEmits {
     // 事件处理函数签名，接收一个事件名称 'click' 和一个 MouseEvent 对象
     (e: 'click', val: MouseEvent): void;
