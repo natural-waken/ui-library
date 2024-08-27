@@ -10,13 +10,14 @@ export const notificationTypes = [
 // 定义为联合类型 NotificationType，即 info、success、warning 和 danger 四种类型之一
 export type NotificationType = (typeof notificationTypes)[number];
 
+// 通知显示位置
 export const notificationPosition = [
     "top-right",
     "top-left",
     "bottom-right",
     "bottom-left",
 ] as const;
-export type NotificationPosition = (typeof notificationPosition)[number];
+export type NotificationPosition = (typeof notificationPosition)[number];  // 联合类型，只能是 top-right, top-left, bottom-right, bottom-left 其中之一
 
 // 定义了通知组件的属性
 export interface NotificationProps {

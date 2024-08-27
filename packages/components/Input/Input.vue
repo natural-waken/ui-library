@@ -194,6 +194,7 @@ defineExpose<InputInstance>({
                     />
                 </span>
             </div>
+            
             <div v-if="$slots.append" class="li-input__append">
                 <slot name="append"></slot>
             </div>

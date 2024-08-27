@@ -4,7 +4,13 @@
     /* colors */
     --li-color-white: #ffffff;
     --li-color-black: #000000;
-    --colors: (primary: #409eff, success: #67c23a, warning: #e6a23c, danger: #f56c6c, info: #909399);
+    --colors: (
+        primary: #409eff,
+        success: #67c23a,
+        warning: #e6a23c,
+        danger: #f56c6c,
+        info: #909399
+    );
     --li-bg-color: #ffffff;
     --li-bg-color-page: #f2f3f5;
     --li-bg-color-overlay: #ffffff;
@@ -28,54 +34,44 @@
     --li-fill-color-blank: #ffffff;
 
     @each $val, $color in var(--colors) {
-        --li-color-$(val): $(
-            color
-        );
+        --li-color-$(val): $(color);
 
-    @for $i from 3 to 9 {
-        --li-color-$(val)-light-$(i): mix(#fff, $(
-                color),
-            0.$(
-            i)
-        );
-}
+        @for $i from 3 to 9 {
+            --li-color-$(val)-light-$(i): mix(#fff, $(color), 0$ (i));
+        }
 
---li-color-$(val)-dark-2: mix(#000, $(color), 0.2);
-}
+        --li-color-$(val)-dark-2: mix(#000, $(color), 0.2);
+    }
 
-/* border */
---li-border-width: 1px;
---li-border-style: solid;
---li-border-color-hover: var(--li-text-color-disabled);
---li-border: var(--li-border-width) var(--li-border-style) var(--li-border-color);
---li-border-radius-base: 4px;
---li-border-radius-small: 2px;
---li-border-radius-round: 20px;
---li-border-radius-circle: 100%;
+    /* border */
+    --li-border-width: 1px;
+    --li-border-style: solid;
+    --li-border-color-hover: var(--li-text-color-disabled);
+    --li-border: var(--li-border-width) var(--li-border-style)
+        var(--li-border-color);
+    --li-border-radius-base: 4px;
+    --li-border-radius-small: 2px;
+    --li-border-radius-round: 20px;
+    --li-border-radius-circle: 100%;
 
-/*font*/
---li-font-size-extra-large: 20px;
---li-font-size-large: 18px;
---li-font-size-medium: 16px;
---li-font-size-base: 14px;
---li-font-size-small: 13px;
---li-font-size-extra-small: 12px;
---li-font-family: 'Helvetica Neue',
-Helvetica,
-'PingFang SC',
-'Hiragino Sans GB',
-'Microsoft YaHei',
-'\5fae\8f6f\96c5\9ed1',
-Arial,
-sans-serif;
---li-font-weight-primary: 500;
+    /*font*/
+    --li-font-size-extra-large: 20px;
+    --li-font-size-large: 18px;
+    --li-font-size-medium: 16px;
+    --li-font-size-base: 14px;
+    --li-font-size-small: 13px;
+    --li-font-size-extra-small: 12px;
+    --li-font-family: 'Helvetica Neue', Helvetica, 'PingFang SC',
+        'Hiragino Sans GB', 'Microsoft YaHei', '\5fae\8f6f\96c5\9ed1', Arial,
+        sans-serif;
+    --li-font-weight-primary: 500;
 
-/*disabled*/
---li-disabled-bg-color: var(--li-fill-color-light);
---li-disabled-text-color: var(--li-text-color-placeholder);
---li-disabled-border-color: var(--li-border-color-light);
+    /*disabled*/
+    --li-disabled-bg-color: var(--li-fill-color-light);
+    --li-disabled-text-color: var(--li-text-color-placeholder);
+    --li-disabled-border-color: var(--li-border-color-light);
 
-/*animation*/
---li-transition-duration: 0.4s;
---li-transition-duration-fast: 0.2s;
+    /*animation*/
+    --li-transition-duration: 0.4s;
+    --li-transition-duration-fast: 0.2s;
 }

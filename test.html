@@ -9,79 +9,36 @@
 
 <body>
     <script>
-
-
-        // 构建哈夫曼树
-
-        // 层序遍历哈夫曼树，构建对象形式的树结构
-
-
-        // 主函数
-        function recoverHuffmanTree(leaf, values) {
-            class TreeNode {
-                constructor(value = 0, left = null, right = null) {
-                    this.value = value;
-                    this.left = left;
-                    this.right = right;
-                }
-            }
-            function buildHuffmanTree(leaf, values) {
-                // 创建叶子节点
-                const nodes = leaf.map((code, i) => new TreeNode(values[i]));
-
-                // 生成哈夫曼树
-                while (nodes.length > 1) {
-                    nodes.sort((a, b) => a.value - b.value);
-
-                    const left = nodes.shift();
-                    const right = nodes.shift();
-
-                    const merged = new TreeNode(left.value + right.value, left, right);
-                    nodes.push(merged);
-                }
-
-                return nodes[0] || null;
+        class BasePerson { //  BasePerson，表示它是一个基础类  
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
             }
 
-            const huffmanTree = buildHuffmanTree(leaf, values);
-
-            function getLevelOrderObject(tree) {
-                if (!tree) return {};
-
-                const result = [];
-                const queue = [{ node: tree, index: 0 }];
-
-                while (queue.length > 0) {
-                    const { node, index } = queue.shift();
-                    if (node) {
-                        result[index] = node.value;
-                        queue.push({ node: node.left, index: 2 * index + 1 });
-                        queue.push({ node: node.right, index: 2 * index + 2 });
-                    } else {
-                        result[index] = '#';
-                    }
-                }
-
-                // 修剪结果中不需要的尾部空节点
-                let i = result.length - 1;
-                while (i >= 0 && result[i] === '#') {
-                    i--;
-                }
-
-                return result.slice(0, i + 1).reduce((acc, val, i) => {
-                    if (val !== undefined) acc[i] = val;
-                    return acc;
-                }, {});
+            sayHello() {
+                console.log(`Hello, my name is ${this.name} and my age is ${this.age}`);
             }
-
-
-            return getLevelOrderObject(huffmanTree);
         }
 
-        // 示例使用
-        const leaf = ["0", "10", "110", "111"];
-        const values = [3, 1, 1, 2];
-        console.log(recoverHuffmanTree(leaf, values));
+        class Person extends BasePerson { //  Person，表示它是从 BasePerson 继承的子类  
+            constructor(name, age) {
+                super(name, age); // 调用父类的构造函数，并传递所有参数  
+            }
+
+            introduce() {
+                console.log(`Hi, I'm ${this.name} and I'm ${this.age} years old.`);
+            }
+        }
+
+        const p = new BasePerson('绵绵冰', 18);
+        const p2 = new Person('绵绵冰', 20)
+
+        console.log(p);
+        console.log(p2);
+
+        p2.introduce();
+        p2.sayHello();
+
     </script>
 </body>
 

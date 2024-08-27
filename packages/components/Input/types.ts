@@ -1,4 +1,5 @@
 import type { Ref } from "vue";
+// 输入框属性 props
 export interface InputProps {
     id?: string;
     modelValue: string;  // 输入框的绑定值
@@ -16,6 +17,7 @@ export interface InputProps {
     form?: string;  // 输入框所属的表单的 ID    这个在我们后面 form 中会用到
 }
 
+// 输入框事件
 export interface InputEmits {
     (e: "update:modelValue", value: string): void;  // 在输入框值更新时触发，传递新的值
 
