@@ -50,6 +50,9 @@
                 "hidden": true
             }
         ],
+        "writerOpts": {
+            "commitPartial": "This is a partial commit message" 
+        },
         "issuePrefixes": ["#"],
         "commitUrlFormat": "{{host}}/{{owner}}/{{repository}}/commit/{{hash}}",
         "compareUrlFormat": "{{host}}/{{owner}}/{{repository}}/compare/{{previousTag}}...{{currentTag}}",
