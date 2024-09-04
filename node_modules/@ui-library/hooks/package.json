@@ -1,6 +1,6 @@
 {
     "name": "@ui-library/hooks",
-    "version": "1.0.0",
+    "version": "1.0.3",
     "type": "module",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
@@ -18,8 +18,8 @@
         "build": "vite build"
     },
     "peerDependencies": {
-        "vue": "^3.4.27",
-        "lodash-es": "^4.17.21"
+        "lodash-es": "^4.17.21",
+        "vue": "^3.4.27"
     },
     "license": "ISC",
     "devDependencies": {
