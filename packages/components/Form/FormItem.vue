@@ -332,6 +332,7 @@ defineExpose<FormItemInstance>({
     resetField,
     clearValidate,
 });
+
 </script>
 
 <template>
@@ -364,7 +365,7 @@ defineExpose<FormItemInstance>({
         </component>
 
         <!-- 这是表单内容 -->
-        <!-- 它允许子组件向插槽的内容提供数据，使得插槽内容可以访问这些数据 -->
+        <!-- 它允许子组件向插槽的内容提供数据，使插槽内容可以访问这些数据 -->
         <div class="li-form-item__content">
             <slot :validate="validate"></slot>
             <!-- 校验状态是 error 时  展示下面这个 -->

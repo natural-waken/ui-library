@@ -9,35 +9,40 @@
 
 <body>
     <script>
-        class BasePerson { //  BasePerson，表示它是一个基础类  
-            constructor(name, age) {
-                this.name = name;
-                this.age = age;
+        function splitText(text, lengthLimit, separators) {
+            const result = [];
+            let start = 0;
+
+            while (start < text.length) {
+                // Find the next separator within the lengthLimit range
+                let end = Math.min(start + lengthLimit, text.length);
+                let lastSeparatorIndex = -1;
+
+                for (const separator of separators) {
+                    const index = text.lastIndexOf(separator, end - 1);
+                    if (index >= start && index < end) {
+                        lastSeparatorIndex = index;
+                    }
+                }
+
+                // If a separator is found, split at the last separator found
+                if (lastSeparatorIndex !== -1) {
+                    result.push(text.substring(start, lastSeparatorIndex + 1));
+                    start = lastSeparatorIndex + 1;
+                } else {
+                    // Otherwise, split at lengthLimit
+                    result.push(text.substring(start, end));
+                    start = end;
+                }
             }
 
-            sayHello() {
-                console.log(`Hello, my name is ${this.name} and my age is ${this.age}`);
-            }
+            return result;
         }
 
-        class Person extends BasePerson { //  Person，表示它是从 BasePerson 继承的子类  
-            constructor(name, age) {
-                super(name, age); // 调用父类的构造函数，并传递所有参数  
-            }
-
-            introduce() {
-                console.log(`Hi, I'm ${this.name} and I'm ${this.age} years old.`);
-            }
-        }
-
-        const p = new BasePerson('绵绵冰', 18);
-        const p2 = new Person('绵绵冰', 20)
-
-        console.log(p);
-        console.log(p2);
-
-        p2.introduce();
-        p2.sayHello();
+        // 测试用例
+        console.log(splitText("ab,c,d,e?fghijk", 6, [",", "?"])); // ["ab,c,", "d,e?", "fghijk"]
+        console.log(splitText("ab,c,d,e?fghijk", 4, [",", "?"])); // ["ab,", "c,d,", "e?", "fghi", "jk"]
+        console.log(splitText("ab,c,d,e?fghijk", 3, [",", "?"])); // ["ab,", "c,d,", "e?", "fgh", "ijk"]
 
     </script>
 </body>

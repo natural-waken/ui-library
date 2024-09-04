@@ -16,3 +16,4 @@ export * from '../components';  // 这个肯定要这样写  不然在线上无�
 // export * from '@ui-library/components';  // 新方法/
 export * from '@ui-library/locale';
 export default installer
+

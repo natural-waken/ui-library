@@ -82,7 +82,6 @@ const focus: SwitchInstance['focus'] = function () {
 };
 function handleChange() {
     if (isDisabled.value) return;
-
     const newVal = checked.value ? props.inactiveValue : props.activeValue;
 
     innerValue.value = newVal;
@@ -106,7 +105,7 @@ defineExpose<SwitchInstance>({
 });
 </script>
 
-<!-- 这个input 作用就是 我们隐藏了这个  根据 input 里面状态切换里面的样式状态 -->
+<!-- 这个 input 作用就是 我们隐藏了这个  根据 input 里面状态切换里面的样式状态 -->
 <template>
     <div
         class="li-switch"
@@ -128,6 +127,7 @@ defineExpose<SwitchInstance>({
             :checked="checked"
             @keydown.enter="handleChange"
         />
+        
         <div class="li-switch__core">
             <div class="li-switch__core-inner">
                 <span

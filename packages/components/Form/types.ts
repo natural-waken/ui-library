@@ -5,29 +5,33 @@ import type {
 } from "async-validator";  // 用于定义验证规则和错误信息
 import type { Ref } from "vue";  // 定义响应式引用类型
 
+// 表单项校验规则
 export interface FormItemRule extends RuleItem {
     trigger?: string | string[];  // 表示触发验证的事件
 }
-export type FormRules = Record<string, FormItemRule[]>;
+export type FormRules = Record<string, FormItemRule[]>;  // 表单校验规则  是个对象，键是字段名称，值是对应字段的验证规则数组
 
+// 表示验证操作的结果，以 Promise 形式返回一个布尔值，表示验证是否通过。
 export type FormValidateResult = Promise<boolean>;  // 验证结果的类型
 // 函数类型
+// 验证操作回调函数类型，isValid 表示验证是否通过，invalidFields 包含了验证失败的字段信息。可选
 export type FormValidateCallback = (
     isValid: boolean,
     invalidFields?: ValidateFieldsError
 ) => void;
+
 // 用于表示验证状态
 export type ValidateStatus = "success" | "error" | "init" | "validating";
-// 用于描述验证失败的详细信息
+// 用于描述验证失败的详细信息          errors 是一个可选的错误数组，fields 包含了具体的错误字段。
 export interface FormValidateFailuer {
     errors?: ValidateError[];
     fields: ValidateFieldsError;
 }
 
-// 表单的属性
+// 定义了表单组件的所有属性
 export interface FormProps {
-    model: Record<string, any>;  // 对象，包含表单数据
-    rules?: FormRules;  // 用于定义验证规则
+    model: Record<string, any>;  // 表单数据对象
+    rules?: FormRules;  // 表单验证规则
     disabled?: boolean;  // 表单是否禁用
     labelWidth?: number | string;  // 标签的宽度
     labelPosition?: "left" | "right" | "top";  // 标签的位置
@@ -37,7 +41,9 @@ export interface FormProps {
     requiredAsteriskPosition?: "left" | "right";  // 必填星号的位置
 }
 
-// 表单组件的事件
+// 表单组件的事件     validate 事件，用于在表单验证时发出通知。
+// 在 FormEmits 接口中，prop 是指传递给 validate 事件的表单项属性，它是类型 FormItemProps。这个 prop 通常用来标识触发 validate 事件的具体表单项。
+// 也就是说，当一个表单项进行验证时，会触发 validate 事件，并将该表单项的 prop 作为参数传递。
 export interface FormEmits {
     (
         event: "validate",

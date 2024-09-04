@@ -1,116 +1,80 @@
-<template>
-    <div class="tooltip-base-box">
-        <div class="row center">
-            <li-tooltip
-                class="box-item"
-                content="Top Left prompts info"
-                placement="top-start"
-            >
-                <li-button>top-start</li-button>
-            </li-tooltip>
-            <li-tooltip
-                class="box-item"
-                content="Top Center prompts info"
-                placement="top"
-            >
-                <li-button>top</li-button>
-            </li-tooltip>
-            <li-tooltip
-                class="box-item"
-                content="Top Right prompts info"
-                placement="top-end"
-            >
-                <li-button>top-end</li-button>
-            </li-tooltip>
-        </div>
-        <div class="row">
-            <li-tooltip
-                class="box-item"
-                content="Left Top prompts info"
-                placement="left-start"
-            >
-                <li-button>left-start</li-button>
-            </li-tooltip>
-            <li-tooltip
-                class="box-item"
-                content="Right Top prompts info"
-                placement="right-start"
-            >
-                <li-button>right-start</li-button>
-            </li-tooltip>
-        </div>
-        <div class="row">
-            <li-tooltip
-                class="box-item"
-                content="Left Center prompts info"
-                placement="left"
-            >
-                <li-button class="mt-3 mb-3">left</li-button>
-            </li-tooltip>
-            <li-tooltip
-                class="box-item"
-                content="Right Center prompts info"
-                placement="right"
-            >
-                <li-button>right</li-button>
-            </li-tooltip>
-        </div>
-        <div class="row">
-            <li-tooltip
-                class="box-item"
-                content="Left Bottom prompts info"
-                placement="left-end"
-            >
-                <li-button>left-end</li-button>
-            </li-tooltip>
-            <li-tooltip
-                class="box-item"
-                content="Right Bottom prompts info"
-                placement="right-end"
-            >
-                <li-button>right-end</li-button>
-            </li-tooltip>
-        </div>
-        <div class="row center">
-            <li-tooltip
-                class="box-item"
-                content="Bottom Left prompts info"
-                placement="bottom-start"
-            >
-                <li-button>bottom-start</li-button>
-            </li-tooltip>
-            <li-tooltip
-                class="box-item"
-                content="Bottom Center prompts info"
-                placement="bottom"
-            >
-                <li-button>bottom</li-button>
-            </li-tooltip>
-            <li-tooltip
-                class="box-item"
-                content="Bottom Right prompts info"
-                placement="bottom-end"
-            >
-                <li-button>bottom-end</li-button>
-            </li-tooltip>
-        </div>
-    </div>
-</template>
+<script lang="ts" setup>
+import { reactive, ref } from 'vue';
+import { LiMessage, type FormInstance } from 'ui-library';
 
-<style>
-.tooltip-base-box {
-    width: 600px;
-}
-.tooltip-base-box .row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.tooltip-base-box .center {
-    justify-content: center;
-}
-.tooltip-base-box .box-item {
-    width: 110px;
-    margin-top: 10px;
-}
-</style>
+const formRef = ref<FormInstance>();
+const form = reactive({
+    name: '',
+    region: '',
+    delivery: false,
+    desc: '',
+});
+
+const options = ref([
+    { value: 'beijing', label: 'Zone One' },
+    { value: 'shanghai', label: 'Zone Two' },
+]);
+
+const rules = reactive({
+    name: [
+        { required: true, message: '请输入活动名称', trigger: 'blur' },
+        { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' },
+    ],
+    region: [{ required: true, message: '请选择活动区域', trigger: 'change' }],
+    desc: [{ required: true, message: '请填写活动形式', trigger: 'blur' }],
+});
+
+// 表单提交处理
+const onSubmit = () => {
+    formRef.value?.validate().then((valid) => {
+        if (valid) {
+            LiMessage.success('提交成功!');
+        }
+    });
+};
+
+// 表单重置处理
+const onReset = () => {
+    formRef.value?.resetFields();
+};
+
+// 触发表单验证的处理
+const onTriggerValidation = () => {
+    formRef.value?.validate().then((valid) => {
+        if (valid) {
+            LiMessage.success('验证通过!');
+        } else {
+            LiMessage.error('验证失败!');
+        }
+    });
+};
+</script>
+
+<template>
+    <li-form ref="formRef" :model="form" :rules="rules">
+        <li-form-item label="Activity name" prop="name">
+            <li-input v-model="form.name" />
+        </li-form-item>
+        <li-form-item label="Activity zone" prop="region">
+            <li-select
+                v-model="form.region"
+                placeholder="please select your zone"
+                :options="options"
+            />
+        </li-form-item>
+        <li-form-item label="Instant delivery" prop="delivery">
+            <li-switch v-model="form.delivery" />
+        </li-form-item>
+        <li-form-item label="Activity form" prop="desc">
+            <li-input v-model="form.desc" type="textarea" />
+        </li-form-item>
+        <li-form-item>
+            <li-button type="primary" @click="onSubmit">Create</li-button>
+            <li-button @click="onReset">Reset</li-button>
+            <!-- 触发表单验证的按钮 -->
+            <li-button @click="onTriggerValidation"
+                >Trigger Validation</li-button
+            >
+        </li-form-item>
+    </li-form>
+</template>
